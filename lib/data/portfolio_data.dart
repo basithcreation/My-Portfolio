@@ -1,4 +1,3 @@
-
 class PortfolioData {
   // Personal Details
   static const String name = "Abdul Basith";
@@ -48,9 +47,9 @@ class PortfolioData {
   // Experience
   static const List<TimelineItem> experience = [
     TimelineItem(
-      title: "Senior Flutter Developer",
-      subtitle: "Tech Company Inc.",
-      period: "2023 - Present",
+      title: "Junior Flutter Developer",
+      subtitle: "Kpost Courier Co",
+      period: "2024 - Present",
       description:
           "Leading the mobile team, architecting scalable apps, and mentoring juniors.",
     ),

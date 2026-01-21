@@ -199,9 +199,17 @@ class HeroSection extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           // Outer glow ring
-          _AnimatedRing(size: 400, color: AppColors.primary, delay: 0),
-          _AnimatedRing(size: 320, color: AppColors.accentBlue, delay: 200),
-          _AnimatedRing(size: 240, color: AppColors.accentPurple, delay: 400),
+          const _AnimatedRing(size: 400, color: AppColors.primary, delay: 0),
+          const _AnimatedRing(
+            size: 320,
+            color: AppColors.accentBlue,
+            delay: 200,
+          ),
+          const _AnimatedRing(
+            size: 240,
+            color: AppColors.accentPurple,
+            delay: 400,
+          ),
 
           // Center content
           Container(
