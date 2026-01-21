@@ -20,7 +20,7 @@ dependencies:
   google_fonts: ^6.1.0
   flutter_svg: ^2.0.10
   # Utilities
-  url_launcher: ^6.2.4
+  url_launcher: ^6.3.2
   shared_preferences: ^2.2.2
   # Web SEO (Basic)
   seo_renderer: ^0.6.0
