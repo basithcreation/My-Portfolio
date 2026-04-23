@@ -1,6 +1,7 @@
 class PortfolioData {
   // Personal Details
   static const String name = "Basith Creation";
+  static const String fullName = "Abdul Basith";
   static const String title = "Flutter Developer";
   static const String email = "abbasith222@gmail.com";
   static const String location = "Hawalli, Kuwait";

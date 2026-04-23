@@ -95,7 +95,7 @@ class HeroSection extends StatelessWidget {
                 colors: [AppColors.primary, AppColors.accentCyan],
               ).createShader(bounds),
               child: Text(
-                "Hi, I'm ${PortfolioData.name}",
+                "Hi, I'm ${PortfolioData.fullName}",
                 style: theme.textTheme.headlineMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: Colors.white,

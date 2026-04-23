@@ -35,7 +35,4 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
-    - assets/projects/kpost_hr/
-    - assets/projects/kpost_it/
-    - assets/projects/shopeasy/
-    - assets/projects/weather/
+    - assets/projects/
