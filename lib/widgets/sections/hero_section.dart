@@ -9,9 +9,9 @@ import 'package:url_launcher/url_launcher.dart';
 
 class HeroSection extends StatelessWidget {
   const HeroSection({super.key});
+
   Future<void> downloadCV() async {
     final uri = Uri.parse('Abdul_Basith_CV.pdf');
-
     if (!await launchUrl(uri, mode: LaunchMode.platformDefault)) {
       throw 'Could not launch CV';
     }
@@ -115,6 +115,8 @@ class HeroSection extends StatelessWidget {
               style: theme.textTheme.displayMedium?.copyWith(
                 height: 1.2,
                 fontWeight: FontWeight.bold,
+                // FIX: use theme color so it works in both light & dark
+                color: theme.colorScheme.onSurface,
               ),
               textAlign: textAlign,
             )
@@ -151,16 +153,12 @@ class HeroSection extends StatelessWidget {
                 _GradientButton(
                   text: "View My Work",
                   icon: Icons.arrow_forward_rounded,
-                  onTap: () {
-                    // Scroll to projects
-                  },
+                  onTap: () {},
                 ),
                 _OutlineButton(
                   text: "Download CV",
                   icon: Icons.download_rounded,
-                  onTap: () {
-                    downloadCV();
-                  },
+                  onTap: downloadCV,
                 ),
               ],
             )
@@ -198,7 +196,6 @@ class HeroSection extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          // Outer glow ring
           const _AnimatedRing(size: 400, color: AppColors.primary, delay: 0),
           const _AnimatedRing(
             size: 320,
@@ -210,8 +207,6 @@ class HeroSection extends StatelessWidget {
             color: AppColors.accentPurple,
             delay: 400,
           ),
-
-          // Center content
           Container(
                 width: 180,
                 height: 180,
@@ -246,11 +241,9 @@ class HeroSection extends StatelessWidget {
                 end: const Offset(1.05, 1.05),
                 duration: 2000.ms,
               ),
-
-          // Floating particles
           ...List.generate(6, (index) {
             final angle = (index * 60) * (math.pi / 180);
-            final radius = 160.0;
+            const radius = 160.0;
             return Positioned(
               left: 200 + math.cos(angle) * radius,
               top: 200 + math.sin(angle) * radius,
@@ -268,6 +261,7 @@ class HeroSection extends StatelessWidget {
   }
 }
 
+// FIX: Typewriter now uses theme-aware colors instead of hardcoded dark values
 class _TypewriterText extends StatefulWidget {
   final String text;
   final TextStyle? style;
@@ -294,7 +288,6 @@ class _TypewriterTextState extends State<_TypewriterText>
   void initState() {
     super.initState();
 
-    // Typing animation
     _typeController = AnimationController(
       vsync: this,
       duration: Duration(milliseconds: widget.text.length * 50),
@@ -305,23 +298,19 @@ class _TypewriterTextState extends State<_TypewriterText>
       end: widget.text.length,
     ).animate(CurvedAnimation(parent: _typeController, curve: Curves.easeOut));
 
-    // Cursor blink animation
     _cursorController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 600),
     )..repeat(reverse: true);
 
-    // Gradient animation (after typing completes)
     _gradientController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 3),
     );
 
-    // Start typing after a short delay
     Future.delayed(const Duration(milliseconds: 800), () {
       if (mounted) {
         _typeController.forward().then((_) {
-          // Start gradient animation after typing
           _cursorController.stop();
           _gradientController.repeat();
         });
@@ -339,6 +328,10 @@ class _TypewriterTextState extends State<_TypewriterText>
 
   @override
   Widget build(BuildContext context) {
+    // FIX: use theme-aware text color
+    final theme = Theme.of(context);
+    final baseColor = theme.colorScheme.onSurface;
+
     return AnimatedBuilder(
       animation: Listenable.merge([
         _typeController,
@@ -353,11 +346,11 @@ class _TypewriterTextState extends State<_TypewriterText>
           shaderCallback: (bounds) {
             if (_gradientController.isAnimating) {
               return LinearGradient(
-                colors: const [
-                  AppColors.textPrimaryDark,
+                colors: [
+                  baseColor,
                   AppColors.primary,
                   AppColors.accentCyan,
-                  AppColors.textPrimaryDark,
+                  baseColor,
                 ],
                 stops: [
                   0.0,
@@ -367,8 +360,8 @@ class _TypewriterTextState extends State<_TypewriterText>
                 ],
               ).createShader(bounds);
             }
-            return const LinearGradient(
-              colors: [AppColors.textPrimaryDark, AppColors.textPrimaryDark],
+            return LinearGradient(
+              colors: [baseColor, baseColor],
             ).createShader(bounds);
           },
           blendMode: BlendMode.srcIn,

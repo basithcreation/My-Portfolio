@@ -242,17 +242,16 @@ class _AnimatedLogoState extends State<_AnimatedLogo> {
             shaderCallback: (bounds) => LinearGradient(
               colors: _isHovered
                   ? [AppColors.primary, AppColors.accentCyan]
-                  : [
-                      Theme.of(context).primaryColor,
-                      Theme.of(context).primaryColor,
-                    ],
+                  : AppColors
+                        .primaryGradient, 
             ).createShader(bounds),
+            blendMode: BlendMode.srcIn, // explicit is better
             child: Text(
               "< ${PortfolioData.name} />",
               style: GoogleFonts.firaCode(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
+                color: Colors.white, 
               ),
             ),
           ),

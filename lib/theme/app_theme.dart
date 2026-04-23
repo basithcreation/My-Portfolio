@@ -25,15 +25,17 @@ class AppColors {
   // Light Mode
   static const backgroundLight = Color(0xFFF8FAFC);
   static const surfaceLight = Color(0xFFFFFFFF);
+  // FIX: ensure high-contrast text in light mode
   static const textPrimaryLight = Color(0xFF0F172A);
-  static const textSecondaryLight = Color(0xFF64748B);
+  static const textSecondaryLight = Color(0xFF475569);
 
   // Dark Mode - Premium Deep Tones
   static const backgroundDark = Color(0xFF0A0A0F);
   static const surfaceDark = Color(0xFF12121A);
   static const cardDark = Color(0xFF1A1A24);
+  // FIX: ensure high-contrast text in dark mode
   static const textPrimaryDark = Color(0xFFF1F5F9);
-  static const textSecondaryDark = Color(0xFF94A3B8);
+  static const textSecondaryDark = Color(0xFFCBD5E1);
 
   // Gradient Definitions
   static const List<Color> primaryGradient = [primary, accentCyan];
@@ -52,7 +54,7 @@ final themeModeProvider = StateNotifierProvider<ThemeModeNotifier, ThemeMode>((
 class ThemeModeNotifier extends StateNotifier<ThemeMode> {
   static const _prefsKey = 'theme_mode';
 
-  ThemeModeNotifier() : super(ThemeMode.system) {
+  ThemeModeNotifier() : super(ThemeMode.dark) {
     _loadTheme();
   }
 
@@ -64,7 +66,7 @@ class ThemeModeNotifier extends StateNotifier<ThemeMode> {
     } else if (savedTheme == 'dark') {
       state = ThemeMode.dark;
     } else {
-      state = ThemeMode.system;
+      state = ThemeMode.dark; // default to dark for portfolio
     }
   }
 
@@ -82,53 +84,83 @@ class ThemeModeNotifier extends StateNotifier<ThemeMode> {
 
 // --- App Theme Class ---
 class AppTheme {
-  // Text Theme Helper
-  static TextTheme _buildTextTheme(Color color) {
+  static TextTheme _buildTextTheme(Color primary, Color secondary) {
     return GoogleFonts.interTextTheme().copyWith(
       displayLarge: GoogleFonts.outfit(
         fontSize: 56,
         fontWeight: FontWeight.bold,
-        color: color,
+        color: primary,
       ),
       displayMedium: GoogleFonts.outfit(
         fontSize: 48,
         fontWeight: FontWeight.bold,
-        color: color,
+        color: primary,
       ),
       displaySmall: GoogleFonts.outfit(
         fontSize: 36,
         fontWeight: FontWeight.bold,
-        color: color,
+        color: primary,
       ),
       headlineLarge: GoogleFonts.outfit(
         fontSize: 32,
         fontWeight: FontWeight.w600,
-        color: color,
+        color: primary,
       ),
       headlineMedium: GoogleFonts.outfit(
         fontSize: 28,
         fontWeight: FontWeight.w600,
-        color: color,
+        color: primary,
       ),
-      titleLarge: GoogleFonts.inter(
+      headlineSmall: GoogleFonts.outfit(
         fontSize: 22,
         fontWeight: FontWeight.w600,
-        color: color,
+        color: primary,
+      ),
+      titleLarge: GoogleFonts.inter(
+        fontSize: 20,
+        fontWeight: FontWeight.w600,
+        color: primary,
+      ),
+      titleMedium: GoogleFonts.inter(
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+        color: primary,
       ),
       bodyLarge: GoogleFonts.inter(
         fontSize: 16,
         fontWeight: FontWeight.normal,
-        color: color,
+        color: primary,
       ),
       bodyMedium: GoogleFonts.inter(
         fontSize: 14,
         fontWeight: FontWeight.normal,
-        color: color,
+        color: secondary,
+      ),
+      bodySmall: GoogleFonts.inter(
+        fontSize: 12,
+        fontWeight: FontWeight.normal,
+        color: secondary,
+      ),
+      labelLarge: GoogleFonts.inter(
+        fontSize: 14,
+        fontWeight: FontWeight.w600,
+        color: primary,
+      ),
+      labelMedium: GoogleFonts.inter(
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        color: secondary,
+      ),
+      labelSmall: GoogleFonts.inter(
+        fontSize: 11,
+        fontWeight: FontWeight.w500,
+        color: secondary,
       ),
     );
   }
 
   static ThemeData get lightTheme {
+    // FIX: proper light theme with high-contrast colors
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.light,
@@ -136,12 +168,18 @@ class AppTheme {
         primary: AppColors.primary,
         secondary: AppColors.secondary,
         surface: AppColors.surfaceLight,
+        surfaceContainerHighest: Color(0xFFE2E8F0),
         onPrimary: Colors.white,
         onSecondary: Colors.white,
         onSurface: AppColors.textPrimaryLight,
+        onSurfaceVariant: AppColors.textSecondaryLight,
       ),
       scaffoldBackgroundColor: AppColors.backgroundLight,
-      textTheme: _buildTextTheme(AppColors.textPrimaryLight),
+      // FIX: pass both primary and secondary text colors
+      textTheme: _buildTextTheme(
+        AppColors.textPrimaryLight,
+        AppColors.textSecondaryLight,
+      ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primary,
@@ -160,7 +198,32 @@ class AppTheme {
         shadowColor: Colors.black.withValues(alpha: 0.05),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       ),
-      iconTheme: const IconThemeData(color: AppColors.textPrimaryLight),
+      iconTheme: const IconThemeData(
+        color: AppColors.textPrimaryLight,
+        size: 24,
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        fillColor: Colors.white,
+        labelStyle: TextStyle(color: AppColors.textSecondaryLight),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(
+            color: AppColors.textPrimaryLight.withValues(alpha: 0.15),
+          ),
+        ),
+      ),
+      // FIX: smooth theme switch animation via page transitions
+      pageTransitionsTheme: const PageTransitionsTheme(
+        builders: {
+          TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+          TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+          TargetPlatform.macOS: FadeUpwardsPageTransitionsBuilder(),
+          TargetPlatform.windows: FadeUpwardsPageTransitionsBuilder(),
+          TargetPlatform.linux: FadeUpwardsPageTransitionsBuilder(),
+          TargetPlatform.fuchsia: FadeUpwardsPageTransitionsBuilder(),
+        },
+      ),
     );
   }
 
@@ -172,12 +235,17 @@ class AppTheme {
         primary: AppColors.primary,
         secondary: AppColors.secondary,
         surface: AppColors.surfaceDark,
+        surfaceContainerHighest: AppColors.cardDark,
         onPrimary: Colors.black,
         onSecondary: Colors.white,
         onSurface: AppColors.textPrimaryDark,
+        onSurfaceVariant: AppColors.textSecondaryDark,
       ),
       scaffoldBackgroundColor: AppColors.backgroundDark,
-      textTheme: _buildTextTheme(AppColors.textPrimaryDark),
+      textTheme: _buildTextTheme(
+        AppColors.textPrimaryDark,
+        AppColors.textSecondaryDark,
+      ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primary,
@@ -195,7 +263,31 @@ class AppTheme {
         elevation: 0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       ),
-      iconTheme: const IconThemeData(color: AppColors.textPrimaryDark),
+      iconTheme: const IconThemeData(
+        color: AppColors.textPrimaryDark,
+        size: 24,
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        fillColor: AppColors.surfaceDark,
+        labelStyle: const TextStyle(color: AppColors.textSecondaryDark),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(
+            color: AppColors.textPrimaryDark.withValues(alpha: 0.1),
+          ),
+        ),
+      ),
+      pageTransitionsTheme: const PageTransitionsTheme(
+        builders: {
+          TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+          TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+          TargetPlatform.macOS: FadeUpwardsPageTransitionsBuilder(),
+          TargetPlatform.windows: FadeUpwardsPageTransitionsBuilder(),
+          TargetPlatform.linux: FadeUpwardsPageTransitionsBuilder(),
+          TargetPlatform.fuchsia: FadeUpwardsPageTransitionsBuilder(),
+        },
+      ),
     );
   }
 }

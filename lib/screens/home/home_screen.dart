@@ -11,7 +11,6 @@ import '../../widgets/sections/projects_section.dart';
 import '../../widgets/sections/skills_section.dart';
 import '../../widgets/sections/cta_strip.dart';
 
-// Provider to store keys for scrolling
 final homeScrollKeysProvider = Provider<List<GlobalKey>>((ref) {
   return List.generate(5, (_) => GlobalKey());
 });
@@ -25,6 +24,8 @@ class HomeScreen extends ConsumerStatefulWidget {
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   late ScrollController _scrollController;
+  // FIX: Track whether nav triggered the scroll to avoid feedback loop
+  bool _isNavScrolling = false;
 
   @override
   void initState() {
@@ -43,7 +44,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   void _onScroll() {
     if (!mounted) return;
 
-    // Update scroll progress
     final maxScroll = _scrollController.position.maxScrollExtent;
     final currentScroll = _scrollController.offset;
     final progress = maxScroll > 0
@@ -51,13 +51,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         : 0.0;
     ref.read(scrollProgressProvider.notifier).state = progress;
 
-    // Update active section based on scroll position
-    _updateActiveSection();
+    // FIX: only update active section from scroll if not driven by nav tap
+    if (!_isNavScrolling) {
+      _updateActiveSection();
+    }
   }
 
   void _updateActiveSection() {
     final keys = ref.read(homeScrollKeysProvider);
-
     final viewportHeight = MediaQuery.of(context).size.height;
 
     int activeIndex = 0;
@@ -67,7 +68,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         final box = key.currentContext!.findRenderObject() as RenderBox?;
         if (box != null) {
           final position = box.localToGlobal(Offset.zero).dy;
-          // Section is active when it's in the top third of the viewport
           if (position <= viewportHeight * 0.4) {
             activeIndex = i;
           }
@@ -80,14 +80,19 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     }
   }
 
-  void _scrollToSection(int index) {
+  Future<void> _scrollToSection(int index) async {
     final keys = ref.read(homeScrollKeysProvider);
     if (index < keys.length && keys[index].currentContext != null) {
-      Scrollable.ensureVisible(
+      // FIX: suppress scroll listener updates during programmatic scroll
+      _isNavScrolling = true;
+      await Scrollable.ensureVisible(
         keys[index].currentContext!,
         duration: const Duration(milliseconds: 800),
         curve: Curves.easeOutCubic,
       );
+      // FIX: re-enable scroll detection after animation completes
+      await Future.delayed(const Duration(milliseconds: 100));
+      if (mounted) _isNavScrolling = false;
     }
   }
 
@@ -95,7 +100,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Widget build(BuildContext context) {
     final keys = ref.watch(homeScrollKeysProvider);
 
-    // Listen for section changes from navbar
+    // FIX: listen for nav section changes and scroll smoothly
     ref.listen<int>(activeSectionProvider, (previous, next) {
       if (previous != next) {
         _scrollToSection(next);
@@ -162,7 +167,6 @@ class _MobileDrawer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final keys = ref.read(homeScrollKeysProvider);
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
     final activeSection = ref.watch(activeSectionProvider);
@@ -175,7 +179,6 @@ class _MobileDrawer extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // Header
             Padding(
               padding: const EdgeInsets.all(24),
               child: ShaderMask(
@@ -191,7 +194,6 @@ class _MobileDrawer extends ConsumerWidget {
                 ),
               ),
             ),
-
             Container(
               height: 1,
               margin: const EdgeInsets.symmetric(horizontal: 24),
@@ -204,8 +206,6 @@ class _MobileDrawer extends ConsumerWidget {
                 ),
               ),
             ),
-
-            // Menu items
             Expanded(
               child: ListView(
                 padding: const EdgeInsets.symmetric(vertical: 16),
@@ -258,8 +258,6 @@ class _MobileDrawer extends ConsumerWidget {
                 ],
               ),
             ),
-
-            // Theme toggle
             Padding(
               padding: const EdgeInsets.all(24),
               child: _ThemeToggleRow(),
@@ -372,12 +370,7 @@ class _ThemeToggleRow extends ConsumerWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            theme.colorScheme.surface.withValues(alpha: 0.5),
-            theme.colorScheme.surface.withValues(alpha: 0.3),
-          ],
-        ),
+        color: theme.colorScheme.surface.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
           color: theme.colorScheme.onSurface.withValues(alpha: 0.1),
@@ -395,7 +388,10 @@ class _ThemeToggleRow extends ConsumerWidget {
               const SizedBox(width: 12),
               Text(
                 isDark ? "Dark Mode" : "Light Mode",
-                style: theme.textTheme.bodyMedium,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  // FIX: use theme-aware color
+                  color: theme.colorScheme.onSurface,
+                ),
               ),
             ],
           ),

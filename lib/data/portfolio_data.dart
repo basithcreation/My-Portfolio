@@ -15,7 +15,7 @@ class PortfolioData {
   static const String resumeUrl = ""; // Add URL if available
 
   // Profile Image (Asset path)
-  static const String profileImage = "assets/images/profile.jpg"; // Placeholder
+  static const String profileImage = "images/profile.jpg"; // Placeholder
 
   // Statistics
   static const List<StatItem> stats = [
@@ -77,12 +77,12 @@ class PortfolioData {
   //     description:
   //         "Developed a complete HR management system for KPOST Courier including attendance tracking, leave management, ticketing system, employee profile handling, and document uploads. Integrated REST APIs with secure authentication and role-based access.",
   //     tags: ["Flutter", "PHP", "MySQL", "REST API"],
-  //     imageUrl: "assets/projects/kpost_hr.png",
+  //     imageUrl: "projects/kpost_hr.png",
   //     screenshots: [
-  //       "assets/projects/kpost_hr/login_image.jpeg",
-  //       "assets/images/hr2.jpg",
-  //       "assets/images/hr2.jpg",
-  //       "assets/images/hr2.jpg",
+  //       "projects/kpost_hr/login_image.jpeg",
+  //       "images/hr2.jpg",
+  //       "images/hr2.jpg",
+  //       "images/hr2.jpg",
   //     ],
   //   ),
   //   Project(
@@ -91,7 +91,7 @@ class PortfolioData {
   //     description:
   //         "Built an internal IT management system to track company assets, device allocation, issue reporting, and maintenance requests. Improved IT operations efficiency with real-time updates and admin controls.",
   //     tags: ["Flutter", "API", "MySQL"],
-  //     imageUrl: "assets/projects/kpost_it.png",
+  //     imageUrl: "projects/kpost_it.png",
   //   ),
   //   Project(
   //     id: "ecommerce-app",
@@ -99,7 +99,7 @@ class PortfolioData {
   //     description:
   //         "Developed a mobile e-commerce application with product listing, cart system, user authentication, and order management. Focused on smooth UI/UX and scalable backend integration.",
   //     tags: ["Flutter", "Firebase / API", "UI/UX"],
-  //     imageUrl: "assets/projects/ecommerce.png",
+  //     imageUrl: "projects/ecommerce.png",
   //   ),
   //   Project(
   //     id: "weather-app",
@@ -107,39 +107,63 @@ class PortfolioData {
   //     description:
   //         "Created a weather forecasting app using external APIs to display real-time weather data, temperature, and location-based forecasts with a clean and responsive UI.",
   //     tags: ["Flutter", "REST API", "weatherapi"],
-  //     imageUrl: "assets/projects/weather.png",
+  //     imageUrl: "projects/weather.png",
   //   ),
   // ];
   static const List<Project> projects = [
     Project(
-      id: "finance-app",
-      title: "Finance Tracker",
+      id: "kpost-hr",
+      title: "KPOST HR Application",
       description:
-          "A comprehensive personal finance management app with chart visualizations and expense tracking.",
-      tags: ["Flutter", "Riverpod", "Firebase"],
-      imageUrl: "assets/projects/kpost_hr/login_image.jpeg",
-      githubUrl: "https://github.com/example/finance",
-      liveUrl:
-          "https://play.google.com/store/apps/details?id=com.example.finance",
-      screenshots: ["assets/images/p1_1.jpg", "assets/images/p1_2.jpg"],
+          "Developed a complete HR management system for KPOST Courier including attendance tracking, leave management, ticketing system, employee profile handling, and document uploads. Integrated REST APIs with secure authentication and role-based access.",
+      tags: [
+        "Flutter",
+        "PHP",
+        "MySQL",
+        "REST API",
+        "Firebase - Push Notification",
+        "Google Maps API",
+      ],
+      imageUrl: "projects/kpost_hr/kpost_hr_application.png",
+      screenshots: [
+        "projects/kpost_hr/login_image.jpeg",
+        "projects/kpost_hr/home1.jpeg",
+        "projects/kpost_hr/home2.jpeg",
+        "projects/kpost_hr/attendance_report.jpeg",
+        "projects/kpost_hr/break_request.jpeg",
+        "projects/kpost_hr/create_ticketing.jpeg",
+        "projects/kpost_hr/hub1.jpeg",
+        "projects/kpost_hr/hub2.jpeg",
+        "projects/kpost_hr/notification.jpeg",
+        "projects/kpost_hr/personal.jpeg",
+        "projects/kpost_hr/profile_edit.jpeg",
+        "projects/kpost_hr/profile.jpeg",
+      ],
+    ),
+    Project(
+      id: "kpost-it",
+      title: "KPOST IT Management App",
+      description:
+          "Built an internal IT management system to track company assets, device allocation, issue reporting, and maintenance requests. Improved IT operations efficiency with real-time updates and admin controls.",
+      tags: ["Flutter", "API", "MySQL"],
+      imageUrl: "projects/kpost_it/kpost_it_management.png",
     ),
     Project(
       id: "e-commerce",
       title: "ShopEasy",
       description:
           "A multi-vendor e-commerce platform with real-time order tracking and payment gateway integration.",
-      tags: ["Flutter", "Clean Arch", "Stripe"],
-      imageUrl: "assets/projects/ecommerce_app.png",
-      githubUrl: "https://github.com/example/shopeasy",
+      tags: ["Flutter", "Clean Arch", "Stripe", "Firebase - Google"],
+      imageUrl: "projects/shopeasy/ShopEasy_e_commerce.png",
+      githubUrl: "https://github.com/basithcreation/shopeasy",
     ),
     Project(
-      id: "social-connect",
-      title: "SocialConnect",
+      id: "weather-app",
+      title: "Weather App",
       description:
-          "A social media app for professionals to connect and share insights.",
-      tags: ["Flutter", "GetX", "Socket.io"],
-      imageUrl: "assets/projects/social_app.png",
-      liveUrl: "https://apps.apple.com/app/id123456",
+          "Created a weather forecasting app using external APIs to display real-time weather data, temperature, and location-based forecasts with a clean and responsive UI.",
+      tags: ["Flutter", "REST API", "weatherapi"],
+      imageUrl: "projects/weather/Aakash_Weather_App.png",
     ),
     Project(
       id: "travel-buddy",
@@ -147,7 +171,7 @@ class PortfolioData {
       description:
           "Travel planning assistance with itinerary generation and map integration.",
       tags: ["Flutter", "Google Maps API", "AI"],
-      imageUrl: "assets/projects/travel_app.png",
+      imageUrl: "projects/travel_app.png",
     ),
   ];
 }

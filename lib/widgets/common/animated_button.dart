@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import '../../theme/app_theme.dart';
 
 class AnimatedButton extends StatefulWidget {
   final String text;
@@ -38,22 +39,28 @@ class _AnimatedButtonState extends State<AnimatedButton> {
                   duration: 200.ms,
                   padding: const EdgeInsets.symmetric(
                     horizontal: 24,
-                    vertical: 12,
+                    vertical: 14,
                   ),
                   decoration: BoxDecoration(
-                    color: widget.isOutlined
-                        ? Colors.transparent
-                        : (_isHovered
-                              ? colorScheme.primary.withOpacity(0.9)
-                              : colorScheme.primary),
+                    // FIX: use gradient for filled button, transparent for outlined
+                    gradient: widget.isOutlined
+                        ? null
+                        : const LinearGradient(
+                            colors: AppColors.primaryGradient,
+                          ),
+                    color: widget.isOutlined ? Colors.transparent : null,
                     borderRadius: BorderRadius.circular(30),
-                    border: Border.all(color: colorScheme.primary, width: 2),
+                    border: Border.all(
+                      color: colorScheme.primary,
+                      width: widget.isOutlined ? 2 : 0,
+                    ),
                     boxShadow: _isHovered && !widget.isOutlined
                         ? [
                             BoxShadow(
-                              color: colorScheme.primary.withValues(alpha: 0.3),
-                              blurRadius: 10,
-                              offset: const Offset(0, 4),
+                              color: AppColors.primary.withValues(alpha: 0.35),
+                              blurRadius: 15,
+                              offset: const Offset(0, 5),
+                              spreadRadius: 1,
                             ),
                           ]
                         : [],
@@ -64,9 +71,10 @@ class _AnimatedButtonState extends State<AnimatedButton> {
                       Text(
                         widget.text,
                         style: theme.textTheme.labelLarge?.copyWith(
+                          // FIX: outlined uses primary color, filled always white
                           color: widget.isOutlined
                               ? colorScheme.primary
-                              : colorScheme.onPrimary,
+                              : Colors.white,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 0.5,
                         ),
@@ -78,7 +86,7 @@ class _AnimatedButtonState extends State<AnimatedButton> {
                           size: 18,
                           color: widget.isOutlined
                               ? colorScheme.primary
-                              : colorScheme.onPrimary,
+                              : Colors.white,
                         ),
                       ],
                     ],
@@ -87,7 +95,9 @@ class _AnimatedButtonState extends State<AnimatedButton> {
                 .animate(target: _isHovered ? 1 : 0)
                 .scale(
                   begin: const Offset(1, 1),
-                  end: const Offset(1.05, 1.05),
+                  end: const Offset(1.04, 1.04),
+                  duration: 200.ms,
+                  curve: Curves.easeOut,
                 ),
       ),
     );

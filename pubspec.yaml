@@ -37,3 +37,6 @@ flutter:
     - assets/icons/
     - assets/projects/
     - assets/projects/kpost_hr/
+    - assets/projects/kpost_it/
+    - assets/projects/shopeasy/
+    - assets/projects/weather/

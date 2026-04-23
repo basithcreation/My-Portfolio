@@ -38,11 +38,12 @@ class Footer extends StatelessWidget {
                     shaderCallback: (bounds) => const LinearGradient(
                       colors: AppColors.primaryGradient,
                     ).createShader(bounds),
+                    blendMode: BlendMode.srcIn,
                     child: Text(
                       "< ${PortfolioData.name} />",
                       style: theme.textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: Colors.white, // must be opaque white
                       ),
                     ),
                   ),
