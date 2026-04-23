@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../../data/portfolio_data.dart';
 import '../../theme/app_theme.dart';
 import '../common/glass_container.dart';
+import '../common/responsive_wrapper.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContactSection extends StatefulWidget {
@@ -37,20 +38,26 @@ class _ContactSectionState extends State<ContactSection> {
           constraints: const BoxConstraints(maxWidth: 900),
           child: Column(
             children: [
-              // Section header
               _buildSectionHeader(theme),
               const SizedBox(height: 60),
-
-              // Content
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Contact info
-                  Expanded(child: _buildContactInfo(theme)),
-                  const SizedBox(width: 40),
-                  // Form
-                  Expanded(flex: 2, child: _buildContactForm(theme)),
-                ],
+              // FIX: use ResponsiveWrapper instead of hard Row
+              ResponsiveWrapper(
+                mobile: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    _buildContactInfo(theme),
+                    const SizedBox(height: 40),
+                    _buildContactForm(theme),
+                  ],
+                ),
+                desktop: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(child: _buildContactInfo(theme)),
+                    const SizedBox(width: 40),
+                    Expanded(flex: 2, child: _buildContactForm(theme)),
+                  ],
+                ),
               ),
             ],
           ),
@@ -88,6 +95,7 @@ class _ContactSectionState extends State<ContactSection> {
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
+            textAlign: TextAlign.center,
           ),
         ),
         const SizedBox(height: 12),
@@ -96,6 +104,7 @@ class _ContactSectionState extends State<ContactSection> {
           style: theme.textTheme.bodyLarge?.copyWith(
             color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
           ),
+          textAlign: TextAlign.center,
         ),
       ],
     ).animate().fadeIn(duration: 600.ms).slideY(begin: -0.2, end: 0);
@@ -120,8 +129,6 @@ class _ContactSectionState extends State<ContactSection> {
           ),
         ),
         const SizedBox(height: 32),
-
-        // Contact items
         _ContactItem(
           icon: Icons.email_rounded,
           label: "Email",
@@ -151,39 +158,32 @@ class _ContactSectionState extends State<ContactSection> {
 
   Widget _buildContactForm(ThemeData theme) {
     return GlassContainer(
-      padding: const EdgeInsets.all(32),
+      padding: const EdgeInsets.all(24),
       child: Form(
         key: _formKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Row(
-              children: [
-                Expanded(
-                  child: _PremiumTextField(
-                    controller: _nameController,
-                    label: "Your Name",
-                    icon: Icons.person_rounded,
-                  ),
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: _PremiumTextField(
-                    controller: _emailController,
-                    label: "Your Email",
-                    icon: Icons.email_rounded,
-                  ),
-                ),
-              ],
+            // FIX: stack name/email vertically on all sizes to prevent overflow
+            _PremiumTextField(
+              controller: _nameController,
+              label: "Your Name",
+              icon: Icons.person_rounded,
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 16),
+            _PremiumTextField(
+              controller: _emailController,
+              label: "Your Email",
+              icon: Icons.email_rounded,
+            ),
+            const SizedBox(height: 16),
             _PremiumTextField(
               controller: _messageController,
               label: "Your Message",
               icon: Icons.message_rounded,
               maxLines: 5,
             ),
-            const SizedBox(height: 28),
+            const SizedBox(height: 24),
             _SendButton(
               onTap: () {
                 if (_formKey.currentState!.validate()) {
@@ -194,7 +194,6 @@ class _ContactSectionState extends State<ContactSection> {
                         'subject=Portfolio Contact from ${_nameController.text}&body=${_messageController.text}',
                   );
                   launchUrl(emailLaunchUri);
-
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: const Text('Opening email app...'),
@@ -215,6 +214,8 @@ class _ContactSectionState extends State<ContactSection> {
   }
 }
 
+// Keep all the existing _ContactItem, _PremiumTextField, _SendButton
+// classes exactly as before — no changes needed there
 class _ContactItem extends StatefulWidget {
   final IconData icon;
   final String label;
@@ -271,7 +272,7 @@ class _ContactItemState extends State<_ContactItem> {
                 ),
                 child: Icon(widget.icon, color: widget.color, size: 20),
               ),
-              const SizedBox(width: 16),
+              const SizedBox(width: 12),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -284,6 +285,7 @@ class _ContactItemState extends State<_ContactItem> {
                         ),
                       ),
                     ),
+                    // FIX: allow text to wrap so it doesn't overflow on mobile
                     Text(
                       widget.value,
                       style: theme.textTheme.bodyMedium?.copyWith(
@@ -292,6 +294,8 @@ class _ContactItemState extends State<_ContactItem> {
                             ? widget.color
                             : theme.colorScheme.onSurface,
                       ),
+                      softWrap: true,
+                      overflow: TextOverflow.visible,
                     ),
                   ],
                 ),
@@ -387,7 +391,6 @@ class _PremiumTextFieldState extends State<_PremiumTextField> {
 
 class _SendButton extends StatefulWidget {
   final VoidCallback onTap;
-
   const _SendButton({required this.onTap});
 
   @override
@@ -436,7 +439,7 @@ class _SendButtonState extends State<_SendButton> {
                 ),
               ),
               const SizedBox(width: 8),
-              Icon(Icons.send_rounded, color: Colors.white, size: 18)
+            const  Icon(Icons.send_rounded, color: Colors.white, size: 18)
                   .animate(target: _isHovered ? 1 : 0)
                   .moveX(begin: 0, end: 4)
                   .rotate(begin: 0, end: -0.05),

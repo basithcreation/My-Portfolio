@@ -78,9 +78,9 @@ class PortfolioData {
   //     description:
   //         "Developed a complete HR management system for KPOST Courier including attendance tracking, leave management, ticketing system, employee profile handling, and document uploads. Integrated REST APIs with secure authentication and role-based access.",
   //     tags: ["Flutter", "PHP", "MySQL", "REST API"],
-  //     imageUrl: "projects/kpost_hr.png",
+  //     imageUrl: "assets/projects/kpost_hr.png",
   //     screenshots: [
-  //       "projects/kpost_hr/login_image.jpeg",
+  //       "assets/projects/kpost_hr/login_image.jpeg",
   //       "images/hr2.jpg",
   //       "images/hr2.jpg",
   //       "images/hr2.jpg",
@@ -92,7 +92,7 @@ class PortfolioData {
   //     description:
   //         "Built an internal IT management system to track company assets, device allocation, issue reporting, and maintenance requests. Improved IT operations efficiency with real-time updates and admin controls.",
   //     tags: ["Flutter", "API", "MySQL"],
-  //     imageUrl: "projects/kpost_it.png",
+  //     imageUrl: "assets/projects/kpost_it.png",
   //   ),
   //   Project(
   //     id: "ecommerce-app",
@@ -100,7 +100,7 @@ class PortfolioData {
   //     description:
   //         "Developed a mobile e-commerce application with product listing, cart system, user authentication, and order management. Focused on smooth UI/UX and scalable backend integration.",
   //     tags: ["Flutter", "Firebase / API", "UI/UX"],
-  //     imageUrl: "projects/ecommerce.png",
+  //     imageUrl: "assets/projects/ecommerce.png",
   //   ),
   //   Project(
   //     id: "weather-app",
@@ -108,7 +108,7 @@ class PortfolioData {
   //     description:
   //         "Created a weather forecasting app using external APIs to display real-time weather data, temperature, and location-based forecasts with a clean and responsive UI.",
   //     tags: ["Flutter", "REST API", "weatherapi"],
-  //     imageUrl: "projects/weather.png",
+  //     imageUrl: "assets/projects/weather.png",
   //   ),
   // ];
   static const List<Project> projects = [
@@ -125,20 +125,20 @@ class PortfolioData {
         "Firebase - Push Notification",
         "Google Maps API",
       ],
-      imageUrl: "projects/kpost_hr/kpost_hr_application.png",
+      imageUrl: "assets/projects/kpost_hr/kpost_hr_application.png",
       screenshots: [
-        "projects/kpost_hr/login_image.jpeg",
-        "projects/kpost_hr/home1.jpeg",
-        "projects/kpost_hr/home2.jpeg",
-        "projects/kpost_hr/attendance_report.jpeg",
-        "projects/kpost_hr/break_request.jpeg",
-        "projects/kpost_hr/create_ticketing.jpeg",
-        "projects/kpost_hr/hub1.jpeg",
-        "projects/kpost_hr/hub2.jpeg",
-        "projects/kpost_hr/notification.jpeg",
-        "projects/kpost_hr/personal.jpeg",
-        "projects/kpost_hr/profile_edit.jpeg",
-        "projects/kpost_hr/profile.jpeg",
+        "assets/projects/kpost_hr/login_image.jpeg",
+        "assets/projects/kpost_hr/home1.jpeg",
+        "assets/projects/kpost_hr/home2.jpeg",
+        "assets/projects/kpost_hr/attendance_report.jpeg",
+        "assets/projects/kpost_hr/break_request.jpeg",
+        "assets/projects/kpost_hr/create_ticketing.jpeg",
+        "assets/projects/kpost_hr/hub1.jpeg",
+        "assets/projects/kpost_hr/hub2.jpeg",
+        "assets/projects/kpost_hr/notification.jpeg",
+        "assets/projects/kpost_hr/personal.jpeg",
+        "assets/projects/kpost_hr/profile_edit.jpeg",
+        "assets/projects/kpost_hr/profile.jpeg",
       ],
     ),
     Project(
@@ -147,7 +147,7 @@ class PortfolioData {
       description:
           "Built an internal IT management system to track company assets, device allocation, issue reporting, and maintenance requests. Improved IT operations efficiency with real-time updates and admin controls.",
       tags: ["Flutter", "API", "MySQL"],
-      imageUrl: "projects/kpost_it/kpost_it_management.png",
+      imageUrl: "assets/projects/kpost_it/kpost_it_management.png",
     ),
     Project(
       id: "e-commerce",
@@ -155,7 +155,7 @@ class PortfolioData {
       description:
           "A multi-vendor e-commerce platform with real-time order tracking and payment gateway integration.",
       tags: ["Flutter", "Clean Arch", "Stripe", "Firebase - Google"],
-      imageUrl: "projects/shopeasy/ShopEasy_e_commerce.png",
+      imageUrl: "assets/projects/shopeasy/ShopEasy_e_commerce.png",
       githubUrl: "https://github.com/basithcreation/shopeasy",
     ),
     Project(
@@ -164,7 +164,7 @@ class PortfolioData {
       description:
           "Created a weather forecasting app using external APIs to display real-time weather data, temperature, and location-based forecasts with a clean and responsive UI.",
       tags: ["Flutter", "REST API", "weatherapi"],
-      imageUrl: "projects/weather/Aakash_Weather_App.png",
+      imageUrl: "assets/projects/weather/Aakash_Weather_App.png",
     ),
     Project(
       id: "travel-buddy",
@@ -172,7 +172,7 @@ class PortfolioData {
       description:
           "Travel planning assistance with itinerary generation and map integration.",
       tags: ["Flutter", "Google Maps API", "AI"],
-      imageUrl: "projects/travel_app.png",
+      imageUrl: "assets/projects/travel_app.png",
     ),
   ];
 }
