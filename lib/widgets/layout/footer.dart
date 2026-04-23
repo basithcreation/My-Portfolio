@@ -58,13 +58,13 @@ class Footer extends StatelessWidget {
               ),
 
               // Social links
-              Row(
+              const Row(
                 children: [
                   _FooterSocialIcon(
                     icon: "assets/icons/github.svg",
                     url: PortfolioData.githubUrl,
                   ),
-                  const SizedBox(width: 16),
+                  SizedBox(width: 16),
                   _FooterSocialIcon(
                     icon: "assets/icons/linkedin.svg",
                     url: PortfolioData.linkedinUrl,
