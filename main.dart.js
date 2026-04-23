@@ -93024,7 +93024,7 @@ return A.bD(s,A.eo(A.aGI(A.cp(A.b([A.ep(this.Pv(a,!1),3,s),B.Wq,A.ep(this.aa4(a)
 Pv(a,b){var s=null,r=6e5,q=A.X(a),p=b?B.ch:B.aN,o=b?B.x:B.ad,n=A.b([B.l.N(0.1),B.bo.N(0.1)],t.O),m=A.b5(30),l=A.dX(B.l.N(0.3),1),k=A.bD(s,s,B.n,s,s,B.DV,s,8,s,s,s,s,8),j=q.ok,i=j.Q,h=t.p
 n=A.hP(A.da(A.cm(A.bD(s,A.cp(A.b([k,B.cc,A.aQ("Available for new projects",s,s,s,i==null?s:i.ef(B.l,B.b0),s,s)],h),B.x,B.q,B.aS,0),B.n,s,s,new A.aO(s,s,l,m,s,new A.cv(B.au,B.aB,B.V,n,s,s),B.w),s,s,s,B.Kp,s,s,s),s,s,s),s,A.b_(r,0)),-0.2,0)
 m=j.e
-m=A.hP(A.da(A.cm(A.k7(B.bS,A.aQ("Hi, I'm Basith Creation",s,s,s,m==null?s:m.ef(B.j,B.G),p,s),new A.ac2()),s,s,s),A.b_(1e5,0),A.b_(r,0)),0.2,0)
+m=A.hP(A.da(A.cm(A.k7(B.bS,A.aQ("Hi, I'm Abdul Basith",s,s,s,m==null?s:m.ef(B.j,B.G),p,s),new A.ac2()),s,s,s),A.b_(1e5,0),A.b_(r,0)),0.2,0)
 l=j.b
 l=A.hP(A.da(A.cm(new A.Kv("Flutter Developer",l==null?s:l.Yv(q.ax.k3,B.G,1.2),p,s),s,s,s),A.b_(2e5,0),A.b_(r,0)),0.2,0)
 k=b?350:500
