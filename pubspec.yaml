@@ -33,11 +33,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/
     - assets/icons/
     - assets/projects/kpost_hr/
     - assets/projects/kpost_it/
     - assets/projects/shopeasy/
     - assets/projects/weather/
-    - assets/projects/social_app.png
-    - assets/projects/travel_app.png

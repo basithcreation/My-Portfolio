@@ -172,7 +172,8 @@ class PortfolioData {
       description:
           "Travel planning assistance with itinerary generation and map integration.",
       tags: ["Flutter", "Google Maps API", "AI"],
-      imageUrl: "assets/projects/travel_app.png",
+      imageUrl:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt40_RgOvDjzBt2vo0j5ejYPGK_e0nno2X1g&s",
     ),
   ];
 }
