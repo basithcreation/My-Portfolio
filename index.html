@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Abdul Basith — Flutter Developer & IT Administrator | Kuwait</title>
+  <meta name="description" content="Flutter Developer & IT Administrator based in Kuwait. 2+ live production apps, enterprise IT infrastructure, clean architecture, real results."/>
+  <meta name="keywords" content="Flutter Developer Kuwait, Mobile App Developer, IT Administrator, Dart, Firebase, GetX, REST API, KPOST"/>
+  <meta name="author" content="Abdul Basith"/>
+  <meta name="robots" content="index, follow"/>
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Abdul Basith — Flutter Developer & IT Administrator"/>
+  <meta property="og:description" content="Production Flutter apps & enterprise IT administration from Kuwait. Clean architecture, real results."/>
+  <meta property="og:url" content="https://basithdev.github.io/portfolio/"/>
+  <meta property="og:image" content="https://basithdev.github.io/portfolio/og-image.png"/>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Abdul Basith — Flutter Developer"/>
+  <meta name="twitter:description" content="Production Flutter apps & enterprise IT from Kuwait."/>
+
+  <link rel="icon" href="logo/basithdev-avatar.svg" type="image/svg+xml"/>
+  <link rel="apple-touch-icon" href="logo/basithdev-avatar.svg"/>
+
+  <!-- Google Fonts: Plus Jakarta Sans (display + body) + JetBrains Mono (code) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <link rel="stylesheet" href="css/main.css"/>
+
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+
+  <!-- ─── NOISE TEXTURE OVERLAY ────────── -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- ─── CURSOR SPOTLIGHT ─────────────── -->
+  <div class="cursor-spotlight" id="cursorSpotlight" aria-hidden="true"></div>
+
+  <!-- ─── SCROLL PROGRESS ──────────────── -->
+  <div id="scrollProgress"></div>
+
+  <!-- ─── LOADER ─────────────────────── -->
+  <div id="loader" class="loader">
+    <div class="loader-content">
+      <div class="loader-logo">AB<span>.</span></div>
+      <div class="loader-progress"><div class="loader-bar" id="loaderBar"></div></div>
+      <div class="loader-pct" id="loaderPct">0%</div>
+    </div>
+  </div>
+
+  <!-- ─── CUSTOM CURSOR ──────────────── -->
+  <div class="c-dot" id="cDot"></div>
+  <div class="c-ring" id="cRing"></div>
+
+  <!-- ─── NAVIGATION ────────────────── -->
+  <header class="nav-wrap" id="navWrap">
+    <nav class="nav container">
+      <a href="#hero" class="nav-logo">AB<span class="accent-dot">.</span></a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about"      class="nl">About</a></li>
+        <li><a href="#skills"     class="nl">Skills</a></li>
+        <li><a href="#gallery"    class="nl">Gallery</a></li>
+        <li><a href="#projects"   class="nl">Projects</a></li>
+        <li><a href="#experience" class="nl">Experience</a></li>
+        <li><a href="#contact"    class="nl">Contact</a></li>
+      </ul>
+
+      <div class="nav-cta-group">
+        <a href="Abdul_Basith_Flutter_Developer.pdf" download class="btn-cv" title="Download CV">
+          <i class="fa-solid fa-file-arrow-down"></i>
+          <span>CV</span>
+        </a>
+        <a href="mailto:abbasith222@gmail.com" class="btn-hire">
+          Hire Me <i class="fa-solid fa-arrow-up-right"></i>
+        </a>
+        <button class="burger" id="burger" aria-label="menu">
+          <span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile menu overlay -->
+  <div class="mob-overlay" id="mobOverlay"></div>
+  <div class="mob-menu" id="mobMenu">
+    <ul>
+      <li><a href="#about"      class="mob-link">About</a></li>
+      <li><a href="#skills"     class="mob-link">Skills</a></li>
+      <li><a href="#gallery"    class="mob-link">Gallery</a></li>
+      <li><a href="#projects"   class="mob-link">Projects</a></li>
+      <li><a href="#experience" class="mob-link">Experience</a></li>
+      <li><a href="#contact"    class="mob-link">Contact</a></li>
+    </ul>
+    <a href="Abdul_Basith_Flutter_Developer.pdf" download class="btn-ghost mob-cv">
+      <i class="fa-solid fa-file-arrow-down"></i> Download CV
+    </a>
+    <a href="https://wa.me/96566099743" class="btn-primary mob-wa" target="_blank">
+      <i class="fa-brands fa-whatsapp"></i> WhatsApp Me
+    </a>
+  </div>
+
+  <main>
+
+  <!-- ════════════════════════════════════
+       HERO
+  ════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <!-- Animated background mesh -->
+    <div class="mesh-bg">
+      <canvas id="heroCanvas" class="hero-canvas"></canvas>
+      <div class="orb o1"></div>
+      <div class="orb o2"></div>
+      <div class="orb o3"></div>
+      <div class="orb o4"></div>
+      <div class="grid-overlay"></div>
+    </div>
+
+    <div class="container hero-inner">
+      <div class="hero-top">
+        <div class="hero-badge" data-aos="fade-up" data-aos-delay="0">
+          <span class="badge-led"></span>
+          Available for Freelance Projects
+        </div>
+        <div class="hero-top-right" data-aos="fade-up" data-aos-delay="40">
+          <div class="hero-loc">
+            <i class="fa-solid fa-location-dot"></i> Kuwait — Indian Citizen
+          </div>
+          <div class="hero-company-chip">
+            <i class="fa-solid fa-briefcase"></i> KPOST Couriers Co.
+          </div>
+        </div>
+      </div>
+
+      <h1 class="hero-h1" data-aos="fade-up" data-aos-delay="80">
+        <span class="h1-line"><span class="word-outline">Flutter</span></span>
+        <span class="h1-line"><span class="word-fill">Developer</span></span>
+        <span class="h1-line"><span class="word-gradient">&amp; IT</span> <span class="word-outline">Admin</span></span>
+      </h1>
+
+      <div class="hero-role-pill" data-aos="fade-up" data-aos-delay="140">
+        <span class="hrp-prefix">Currently building</span>
+        <span class="hrp-role" id="typewriterText"></span>
+        <span class="hrp-cursor">|</span>
+      </div>
+
+      <div class="hero-bottom">
+        <div class="hero-bottom-left">
+          <p class="hero-sub" data-aos="fade-up" data-aos-delay="160">
+            Hi, I'm <strong>Abdul Basith</strong> — building production-level cross-platform
+            Flutter apps &amp; managing enterprise IT infrastructure from <strong>Kuwait</strong>.
+            Clean code. Scalable architecture. Real results.
+          </p>
+
+          <div class="hero-btns" data-aos="fade-up" data-aos-delay="240">
+            <a href="#projects" class="btn-primary">
+              <span>View My Work</span>
+              <i class="fa-solid fa-arrow-down"></i>
+            </a>
+            <a href="https://wa.me/96566099743?text=Hi%20Abdul%20Basith%2C%20I%20saw%20your%20portfolio!" target="_blank" class="btn-ghost">
+              <i class="fa-brands fa-whatsapp"></i>
+              <span>WhatsApp Me</span>
+            </a>
+            <a href="Abdul_Basith_Flutter_Developer.pdf" download class="btn-ghost btn-download-cv">
+              <i class="fa-solid fa-file-arrow-down"></i>
+              <span>Download CV</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-stats" data-aos="fade-up" data-aos-delay="320">
+          <div class="stat-item">
+            <div class="stat-val-row"><span class="stat-num" data-target="5">0</span><span class="stat-sym">+</span></div>
+            <span class="stat-lbl"><i class="fa-solid fa-briefcase"></i> Years Exp</span>
+          </div>
+          <div class="stat-item">
+            <div class="stat-val-row"><span class="stat-num" data-target="10">0</span><span class="stat-sym">+</span></div>
+            <span class="stat-lbl"><i class="fa-solid fa-mobile-screen"></i> Apps Built</span>
+          </div>
+          <div class="stat-item">
+            <div class="stat-val-row"><span class="stat-num" data-target="6">0</span><span class="stat-sym">+</span></div>
+            <span class="stat-lbl"><i class="fa-solid fa-code"></i> Projects</span>
+          </div>
+          <div class="stat-item">
+            <div class="stat-val-row"><span class="stat-num" data-target="100">0</span><span class="stat-sym">%</span></div>
+            <span class="stat-lbl"><i class="fa-solid fa-star"></i> Satisfaction</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll cue -->
+    <div class="scroll-cue">
+      <div class="sc-mouse"><div class="sc-ball"></div></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       LOGO MARQUEE
+  ════════════════════════════════════ -->
+  <div class="logo-marquee-wrap" aria-hidden="true">
+    <div class="logo-marquee-fade logo-marquee-fade--left"></div>
+    <div class="logo-marquee-fade logo-marquee-fade--right"></div>
+    <div class="logo-marquee-track">
+      <!-- Set A -->
+      <div class="lm-set">
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg" alt="Flutter"/><span>Flutter</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dart/dart-original.svg" alt="Dart"/><span>Dart</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-plain.svg" alt="Firebase"/><span>Firebase</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="PHP"/><span>PHP</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="MySQL"/><span>MySQL</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git"/><span>Git</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original-wordmark.svg" alt="GitHub" style="filter:invert(1)"/><span>GitHub</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="VS Code"/><span>VS Code</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/androidstudio/androidstudio-original.svg" alt="Android Studio"/><span>Android Studio</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/android/android-original.svg" alt="Android"/><span>Android</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg" alt="Linux"/><span>Linux</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" alt="Figma"/><span>Figma</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg" alt="Postman"/><span>Postman</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/supabase/supabase-original.svg" alt="Supabase"/><span>Supabase</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sqlite/sqlite-original.svg" alt="SQLite"/><span>SQLite</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="Node.js"/><span>Node.js</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="Docker"/><span>Docker</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/windows11/windows11-original.svg" alt="Windows"/><span>Windows</span></div>
+      </div>
+      <!-- Set B (identical — seamless loop) -->
+      <div class="lm-set" aria-hidden="true">
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg" alt=""/><span>Flutter</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dart/dart-original.svg" alt=""/><span>Dart</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-plain.svg" alt=""/><span>Firebase</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt=""/><span>PHP</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt=""/><span>MySQL</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt=""/><span>Git</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original-wordmark.svg" alt="" style="filter:invert(1)"/><span>GitHub</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt=""/><span>VS Code</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/androidstudio/androidstudio-original.svg" alt=""/><span>Android Studio</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/android/android-original.svg" alt=""/><span>Android</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg" alt=""/><span>Linux</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" alt=""/><span>Figma</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg" alt=""/><span>Postman</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/supabase/supabase-original.svg" alt=""/><span>Supabase</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sqlite/sqlite-original.svg" alt=""/><span>SQLite</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt=""/><span>Node.js</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt=""/><span>Docker</span></div>
+        <div class="lm-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/windows11/windows11-original.svg" alt=""/><span>Windows</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════
+       ABOUT
+  ════════════════════════════════════ -->
+  <section class="section about-section" id="about">
+    <div class="container">
+      <div class="sec-label" data-aos="fade-up">// 01 — About Me</div>
+      <h2 class="sec-title" data-aos="fade-up" data-aos-delay="50">
+        Who I <em>Am</em>
+      </h2>
+
+      <div class="about-grid">
+        <!-- Card -->
+        <div class="about-card glass-card" data-aos="fade-right">
+          <div class="ac-header">
+            <div class="ac-ava">AB</div>
+            <div class="ac-avail">
+              <span class="green-dot"></span> Available
+            </div>
+          </div>
+          <div class="ac-name">Abdul Basith</div>
+          <div class="ac-title">Flutter Developer &amp; IT Admin</div>
+
+          <div class="ac-row"><i class="fa-solid fa-location-dot"></i> Kuwait</div>
+          <div class="ac-row"><i class="fa-solid fa-building"></i> KPOST Couriers Co.</div>
+          <div class="ac-row"><i class="fa-solid fa-graduation-cap"></i> B.Sc IT — Jamal Mohamed College (2017–2020)</div>
+          <div class="ac-row"><i class="fa-solid fa-envelope"></i> abbasith222@gmail.com</div>
+
+          <div class="ac-langs">
+            <span>🇬🇧 English</span><span>🇸🇦 Arabic</span><span>🇮🇳 Hindi</span>
+            <span>🇮🇳 Tamil</span><span>🇮🇳 Malayalam</span>
+          </div>
+
+          <div class="ac-socials">
+            <a href="mailto:abbasith222@gmail.com" class="soc-btn" title="Email">
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+            <a href="https://wa.me/96566099743" target="_blank" class="soc-btn" title="WhatsApp">
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+            <a href="https://instagram.com/basith_dev" target="_blank" class="soc-btn" title="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://github.com/basithcreation" target="_blank" class="soc-btn" title="GitHub">
+              <i class="fa-brands fa-github"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Text -->
+        <div class="about-text-block" data-aos="fade-left">
+          <p class="about-lead">
+            Passionate Flutter Developer &amp; IT Administrator with production-level experience building scalable mobile applications and managing enterprise infrastructure.
+          </p>
+          <p>
+            At <strong>KPOST Couriers Co., Kuwait</strong> I've architected and shipped <strong>6+ production Flutter apps</strong> across Android, iOS, and Web — from enterprise HR platforms to secure document vaults and POS systems. I specialize in Riverpod/BLoC state management, clean architecture, REST API integration, and Firebase.
+          </p>
+          <p>
+            My dual role as both developer and IT admin gives me a unique edge: I understand systems from hardware to application layer — making my apps more robust, secure, and infrastructure-aware.
+          </p>
+
+          <div class="about-highlights">
+            <div class="hl-item">
+              <i class="fa-solid fa-check-circle"></i>
+              6+ production apps across Android, iOS &amp; Web
+            </div>
+            <div class="hl-item">
+              <i class="fa-solid fa-check-circle"></i>
+              Full-stack: Flutter + PHP/MySQL + Firebase
+            </div>
+            <div class="hl-item">
+              <i class="fa-solid fa-check-circle"></i>
+              Enterprise IT: PBX, MDM, Networking, VPN
+            </div>
+            <div class="hl-item">
+              <i class="fa-solid fa-check-circle"></i>
+              Open to freelance &amp; full-time Flutter roles
+            </div>
+          </div>
+
+          <div class="about-cta-row">
+            <a href="mailto:abbasith222@gmail.com" class="btn-primary">
+              <i class="fa-solid fa-envelope"></i> Email Me
+            </a>
+            <a href="https://wa.me/96566099743" target="_blank" class="btn-ghost">
+              <i class="fa-brands fa-whatsapp"></i> WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       SKILLS / TECH STACK
+  ════════════════════════════════════ -->
+  <section class="section skills-section" id="skills">
+    <div class="container">
+      <div class="sec-label" data-aos="fade-up">// 02 — Skills</div>
+      <h2 class="sec-title" data-aos="fade-up" data-aos-delay="50">
+        My <em>Tech Stack</em>
+      </h2>
+
+      <!-- Skill category cards -->
+      <div class="skill-cards-grid">
+        <div class="skill-cat-card glass-card" data-aos="fade-up" data-aos-delay="0">
+          <div class="scc-icon flutter-icon">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg" alt="Flutter" width="32"/>
+          </div>
+          <h3>Mobile Development</h3>
+          <div class="skill-pill-wrap">
+            <span class="sp">Flutter</span><span class="sp">Dart 3.x</span>
+            <span class="sp">Riverpod</span><span class="sp">Freezed</span>
+            <span class="sp">go_router</span><span class="sp">GetX</span>
+            <span class="sp">BLoC / Cubit</span><span class="sp">Provider</span>
+            <span class="sp">Firebase</span><span class="sp">REST API</span>
+            <span class="sp">Clean Architecture</span><span class="sp">MVVM / MVC</span>
+            <span class="sp">Code Generation</span><span class="sp">Push Notifications</span>
+            <span class="sp">Animations</span><span class="sp">Arabic RTL</span>
+            <span class="sp">Role-Based Access</span><span class="sp">Offline-First</span>
+          </div>
+        </div>
+
+        <div class="skill-cat-card glass-card" data-aos="fade-up" data-aos-delay="80">
+          <div class="scc-icon backend-icon">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="Node.js" width="32"/>
+          </div>
+          <h3>Backend &amp; Database</h3>
+          <div class="skill-pill-wrap">
+            <span class="sp">Node.js / Express 5</span><span class="sp">PHP</span>
+            <span class="sp">MySQL</span><span class="sp">Firebase Firestore</span>
+            <span class="sp">Supabase</span><span class="sp">Hive</span>
+            <span class="sp">Isar</span><span class="sp">Drift / SQLite</span>
+            <span class="sp">ObjectBox</span><span class="sp">FlutterSecureStorage</span>
+            <span class="sp">JWT Authentication</span><span class="sp">bcryptjs</span>
+            <span class="sp">Swagger / OpenAPI</span><span class="sp">REST API Design</span>
+            <span class="sp">JSON Parsing</span><span class="sp">Cloud Architecture</span>
+          </div>
+        </div>
+
+        <div class="skill-cat-card glass-card" data-aos="fade-up" data-aos-delay="160">
+          <div class="scc-icon it-icon">
+            <i class="fa-solid fa-server"></i>
+          </div>
+          <h3>IT Administration</h3>
+          <div class="skill-pill-wrap">
+            <span class="sp">Windows Admin</span><span class="sp">PBX Systems</span>
+            <span class="sp">Networking</span><span class="sp">VPN Config</span>
+            <span class="sp">MDM</span><span class="sp">LAN / WAN</span>
+            <span class="sp">CCTV</span><span class="sp">Helpdesk</span>
+            <span class="sp">Server Room</span><span class="sp">Backup Monitor</span>
+            <span class="sp">Active Directory</span><span class="sp">SonicWall Firewall</span>
+            <span class="sp">MikroTik Router</span><span class="sp">Cisco Switches</span>
+            <span class="sp">Grandstream PBX (UCM6300A)</span><span class="sp">VLAN Configuration</span>
+            <span class="sp">NVR / CCTV Systems</span><span class="sp">Remote Desktop Services</span>
+            <span class="sp">Office 365 Admin</span><span class="sp">NOC Operations</span>
+          </div>
+        </div>
+
+        <div class="skill-cat-card glass-card" data-aos="fade-up" data-aos-delay="240">
+          <div class="scc-icon tools-icon">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git" width="32"/>
+          </div>
+          <h3>Tools &amp; DevOps</h3>
+          <div class="skill-pill-wrap">
+            <span class="sp">Git &amp; GitHub</span><span class="sp">Android Studio</span>
+            <span class="sp">VS Code</span><span class="sp">Postman</span>
+            <span class="sp">Figma</span><span class="sp">Sentry</span>
+            <span class="sp">OTA Updates</span><span class="sp">Google Ads</span>
+            <span class="sp">Lottie</span><span class="sp">ScreenUtil</span>
+            <span class="sp">Flutter Animate</span><span class="sp">SharePoint</span>
+            <span class="sp">Teams Admin</span><span class="sp">GoDaddy / Domain Mgmt</span>
+          </div>
+        </div>
+
+        <div class="skill-cat-card glass-card" data-aos="fade-up" data-aos-delay="320">
+          <div class="scc-icon" style="background:rgba(200,245,66,.12)">
+            <i class="fa-solid fa-shield-halved" style="color:var(--a1);font-size:1.8rem"></i>
+          </div>
+          <h3>Security &amp; Hardware</h3>
+          <div class="skill-pill-wrap">
+            <span class="sp">AES-256 Encryption</span><span class="sp">Biometric Auth</span>
+            <span class="sp">Bluetooth ESC/POS Printer</span><span class="sp">QR / Barcode Scanner</span>
+            <span class="sp">GPS / Geofencing</span><span class="sp">Google Maps Flutter</span>
+            <span class="sp">Geolocator</span><span class="sp">flutter_doc_scanner</span>
+            <span class="sp">local_auth</span><span class="sp">FlutterSecureStorage</span>
+            <span class="sp">Foreground Service</span><span class="sp">mobile_scanner</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── What I Do — Service Cards ── -->
+      <div class="what-i-do" data-aos="fade-up">
+        <div class="wid-label">What I Do</div>
+        <div class="wid-grid">
+
+          <div class="wid-card">
+            <div class="wid-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg" alt="Flutter" width="28"/>
+            </div>
+            <div class="wid-number">01</div>
+            <h3>Flutter Development</h3>
+            <p>Production-grade cross-platform mobile apps with clean architecture, GetX/Bloc state management, REST APIs and Firebase.</p>
+            <ul class="wid-list">
+              <li>iOS &amp; Android from one codebase</li>
+              <li>Clean Architecture / MVVM</li>
+              <li>JWT auth, role-based access</li>
+              <li>Push notifications &amp; deep linking</li>
+            </ul>
+            <div class="wid-tags">
+              <span>Flutter</span><span>Dart</span><span>GetX</span><span>Firebase</span>
+            </div>
+          </div>
+
+          <div class="wid-card wid-card--accent">
+            <div class="wid-icon">
+              <i class="fa-solid fa-server"></i>
+            </div>
+            <div class="wid-number">02</div>
+            <h3>Enterprise IT Administration</h3>
+            <p>End-to-end IT infrastructure management — servers, networking, MDM for 70+ devices, PBX systems and corporate security.</p>
+            <ul class="wid-list">
+              <li>Windows Server &amp; Active Directory</li>
+              <li>Grandstream PBX (UCM6300A)</li>
+              <li>SonicWall, MikroTik, Cisco</li>
+              <li>MDM, VPN, CCTV &amp; NVR</li>
+            </ul>
+            <div class="wid-tags">
+              <span>Networking</span><span>MDM</span><span>VPN</span><span>PBX</span>
+            </div>
+          </div>
+
+          <div class="wid-card">
+            <div class="wid-icon">
+              <i class="fa-solid fa-handshake"></i>
+            </div>
+            <div class="wid-number">03</div>
+            <h3>Freelance &amp; Consulting</h3>
+            <p>Available for freelance Flutter projects, IT consulting, and long-term technical partnerships from Kuwait — remote or on-site.</p>
+            <ul class="wid-list">
+              <li>Mobile app development (end-to-end)</li>
+              <li>API integration &amp; backend setup</li>
+              <li>IT infrastructure audits</li>
+              <li>Fast turnaround, clear communication</li>
+            </ul>
+            <div class="wid-tags">
+              <span>Remote</span><span>Freelance</span><span>Consulting</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       APP GALLERY
+  ════════════════════════════════════ -->
+  <section class="section gallery-section" id="gallery">
+    <div class="container">
+      <div class="sec-label" data-aos="fade-up">// 04 — App Gallery</div>
+      <h2 class="sec-title" data-aos="fade-up" data-aos-delay="50">
+        My Flutter <em>Apps</em>
+      </h2>
+
+      <div class="gallery-grid">
+
+        <!-- KPOST HR Management -->
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="0">
+          <div class="phone-frame">
+            <div class="carousel-viewport">
+              <div class="phone-screen">
+                <img src="https://res.cloudinary.com/dw7dkmos4/image/upload/q_auto/f_auto/v1779357477/login_image_p9grze.jpg" alt="HR Management - Login" loading="lazy"/>
+              </div>
+              <div class="phone-screen">
+                <img src="https://res.cloudinary.com/dw7dkmos4/image/upload/v1779357476/home1_ty0zpp.jpg" alt="HR Management - Dashboard" loading="lazy"/>
+              </div>
+                <div class="phone-screen">
+                <img src="https://res.cloudinary.com/dw7dkmos4/image/upload/v1779357485/WhatsApp_Image_2026-05-21_at_12.54.11_PM_bedvxq.jpg" alt="HR Management - Attendance" loading="lazy"/>
+              </div>
+                   <div class="phone-screen">
+                <img src="https://res.cloudinary.com/dw7dkmos4/image/upload/v1779357483/WhatsApp_Image_2026-05-21_at_12.54.10_PM_przqgs.jpg" alt="HR Management - Attendance" loading="lazy"/>
+              </div>
+                   <div class="phone-screen">
+                <img src="https://res.cloudinary.com/dw7dkmos4/image/upload/v1779357485/create_ticketing_d7tyxa.jpg" alt="HR Management - Attendance" loading="lazy"/>
+              </div>
+                     <div class="phone-screen">
+                <img src="https://res.cloudinary.com/dw7dkmos4/image/upload/v1779357477/home2_xqald5.jpg" alt="HR Management - Attendance" loading="lazy"/>
+              </div>
+                         
+                <div class="phone-screen">
+                <img src="https://res.cloudinary.com/dw7dkmos4/image/upload/v1779357481/asset_agreement_vzacm4.jpg" alt="HR Management - Attendance" loading="lazy"/>
+              </div>
+            <div class="phone-screen">
+                <img src="https://res.cloudinary.com/dw7dkmos4/image/upload/v1779357483/signature_jh7nwu.jpg" alt="HR Management - Attendance" loading="lazy"/>
+              </div>
+                 <div class="phone-screen">
+                <img src="https://res.cloudinary.com/dw7dkmos4/image/upload/v1779357480/profile_zznkuc.jpg" alt="HR Management - Attendance" loading="lazy"/>
+              </div>
+                  <div class="phone-screen">
+                <img src="https://res.cloudinary.com/dw7dkmos4/image/upload/v1779357480/personal_o4uhcp.jpg" alt="HR Management - Attendance" loading="lazy"/>
+              </div>
+                 <div class="phone-screen">
+                <img src="https://res.cloudinary.com/dw7dkmos4/image/upload/v1779357482/assign_permission_srilvo.jpg" alt="HR Management - Attendance" loading="lazy"/>
+              </div>
+                       <div class="phone-screen">
+                <img src="https://res.cloudinary.com/dw7dkmos4/image/upload/v1779357480/profile_edit_senqdp.jpg" alt="HR Management - Attendance" loading="lazy"/>
+              </div>
+                    <div class="phone-screen">
+                <img src="https://res.cloudinary.com/dw7dkmos4/image/upload/v1779357484/attendance_report_jhtx90.jpg" alt="HR Management - Attendance" loading="lazy"/>
+              </div>
+                       <div class="phone-screen">
+                <img src="https://res.cloudinary.com/dw7dkmos4/image/upload/v1779357477/hub1_palri3.jpg" alt="HR Management - Attendance" loading="lazy"/>
+              </div>
+                      <div class="phone-screen">
+                <img src="https://res.cloudinary.com/dw7dkmos4/image/upload/v1779357477/hub2_fmh3bu.jpg" alt="HR Management - Attendance" loading="lazy"/>
+              </div>
+                     <!-- <div class="phone-screen">
+                <img src="" alt="HR Management - Attendance" loading="lazy"/>
+              </div>
+                     <div class="phone-screen">
+                <img src="" alt="HR Management - Attendance" loading="lazy"/>
+              </div> -->
+            </div>
+            <div class="carousel-dots">
+              <div class="carousel-dot active" data-slide="0"></div>
+              <div class="carousel-dot" data-slide="1"></div>
+              <div class="carousel-dot" data-slide="2"></div>
+            </div>
+          </div>
+          <div class="gallery-label">
+            <span class="gl-name">KPOST HR</span>
+            <span class="gl-tag">Flutter · Riverpod · Firebase</span>
+          </div>
+        </div>
+
+        <!-- IT Asset Tracker (KPOST IT) -->
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="80">
+          <div class="phone-frame">
+            <div class="carousel-viewport">
+              <div class="phone-screen">
+                <img src="https://res.cloudinary.com/dw7dkmos4/image/upload/q_auto/f_auto/v1779355746/login_hrxijg.jpg" alt="IT Asset Tracker - Login" loading="lazy"/>
+              </div>
+              <div class="phone-screen">
+                <img src="https://res.cloudinary.com/dw7dkmos4/image/upload/v1779355749/cable1_ymqlpr.jpg" alt="IT Asset Tracker - Asset List" loading="lazy"/>
+              </div>
+              <div class="phone-screen">
+                <img src="https://res.cloudinary.com/dw7dkmos4/image/upload/v1779355749/walltopatch2_urj1ew.jpg" alt="IT Asset Tracker - Asset List" loading="lazy"/>
+              </div>
+              <div class="phone-screen">
+                <img src="https://res.cloudinary.com/dw7dkmos4/image/upload/v1779355749/waxbox2_wsd4mq.jpg" alt="IT Asset Tracker - Asset List" loading="lazy"/>
+              </div>
+              <div class="phone-screen">
+                <img src="https://res.cloudinary.com/dw7dkmos4/image/upload/v1779355748/wallbox1_m9re8l.jpg" alt="IT Asset Tracker - Asset List" loading="lazy"/>
+              </div>
+              <div class="phone-screen">
+                <img src="https://res.cloudinary.com/dw7dkmos4/image/upload/v1779355748/walltopatch1_aavf5e.jpg" alt="IT Asset Tracker - Asset List" loading="lazy"/>
+              </div>
+              <div class="phone-screen">
+                <img src="https://res.cloudinary.com/dw7dkmos4/image/upload/v1779355747/servercount_erz37n.jpg" alt="IT Asset Tracker - Asset List" loading="lazy"/>
+              </div>
+              <div class="phone-screen">
+                <img src="https://res.cloudinary.com/dw7dkmos4/image/upload/v1779355746/patchtowall_tidpds.jpg" alt="IT Asset Tracker - Asset List" loading="lazy"/>
+              </div>
+              <div class="phone-screen">
+                <img src="https://res.cloudinary.com/dw7dkmos4/image/upload/v1779355746/selectdevice_q4mfuu.jpg" alt="IT Asset Tracker - Asset List" loading="lazy"/>
+              </div>
+              <div class="phone-screen">
+                <img src="https://res.cloudinary.com/dw7dkmos4/image/upload/v1779355746/select_department_wsp2mf.jpg" alt="IT Asset Tracker - Asset List" loading="lazy"/>
+              </div>
+              <div class="phone-screen">
+                <img src="https://res.cloudinary.com/dw7dkmos4/image/upload/v1779355745/networkhome_mc0xlw.jpg" alt="IT Asset Tracker - Asset List" loading="lazy"/>
+              </div>
+              <div class="phone-screen">
+                <img src="https://res.cloudinary.com/dw7dkmos4/image/upload/v1779355745/hrdevice_y6amjt.jpg" alt="IT Asset Tracker - Asset List" loading="lazy"/>
+              </div>
+              <div class="phone-screen">
+                <img src="https://res.cloudinary.com/dw7dkmos4/image/upload/v1779355745/itdevices_za94ip.jpg" alt="IT Asset Tracker - Asset List" loading="lazy"/>
+              </div>
+              <div class="phone-screen">
+                <img src="https://res.cloudinary.com/dw7dkmos4/image/upload/v1779355745/fullroute_mmb0hp.jpg" alt="IT Asset Tracker - Asset List" loading="lazy"/>
+              </div>
+              <div class="phone-screen">
+                <img src="https://res.cloudinary.com/dw7dkmos4/image/upload/v1779355745/deviceindept_ktpkam.jpg" alt="IT Asset Tracker - Asset List" loading="lazy"/>
+              </div>
+              <div class="phone-screen">
+                <img src="https://res.cloudinary.com/dw7dkmos4/image/upload/v1779355744/devicecount_zvb5gq.jpg" alt="IT Asset Tracker - Asset List" loading="lazy"/>
+              </div>
+            </div>
+            <div class="carousel-dots">
+              <div class="carousel-dot active" data-slide="0"></div>
+              <div class="carousel-dot" data-slide="1"></div>
+            </div>
+          </div>
+          <div class="gallery-label">
+            <span class="gl-name">IT Asset Tracker</span>
+            <span class="gl-tag">Flutter · GetX · MySQL</span>
+          </div>
+        </div>
+
+        <!-- Document Keeper Kuwait -->
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="160">
+          <div class="phone-frame empty">
+            <div class="carousel-viewport">
+              <div class="phone-screen">
+                <img src="" alt="Document Keeper - Biometric Lock" loading="lazy"/>
+              </div>
+              <div class="phone-screen">
+                <img src="" alt="Document Keeper - Vault" loading="lazy"/>
+              </div>
+            </div>
+            <div class="carousel-dots">
+              <div class="carousel-dot active" data-slide="0"></div>
+              <div class="carousel-dot" data-slide="1"></div>
+            </div>
+          </div>
+          <div class="gallery-label">
+            <span class="gl-name">Document Keeper</span>
+            <span class="gl-tag">Flutter · AES Encryption · Biometric</span>
+          </div>
+        </div>
+
+        <!-- Billing App / POS -->
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="240">
+          <div class="phone-frame empty">
+            <div class="carousel-viewport">
+              <div class="phone-screen">
+                <img src="" alt="Billing App - POS Screen" loading="lazy"/>
+              </div>
+              <div class="phone-screen">
+                <img src="" alt="Billing App - Receipt" loading="lazy"/>
+              </div>
+            </div>
+            <div class="carousel-dots">
+              <div class="carousel-dot active" data-slide="0"></div>
+              <div class="carousel-dot" data-slide="1"></div>
+            </div>
+          </div>
+          <div class="gallery-label">
+            <span class="gl-name">Billing App (POS)</span>
+            <span class="gl-tag">Flutter · BLoC · Bluetooth Printer</span>
+          </div>
+        </div>
+
+        <!-- My Bachelor Rooms -->
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="320">
+          <div class="phone-frame">
+            <div class="carousel-viewport">
+              <div class="phone-screen">
+                <img src="https://res.cloudinary.com/dw7dkmos4/image/upload/q_auto/f_auto/v1779360078/mmg_login_qgm7ab.jpg" alt="Bachelor Rooms - Login" loading="lazy"/>
+              </div>
+              <div class="phone-screen">
+                <img src="" alt="Bachelor Rooms - Room List" loading="lazy"/>
+              </div>
+            </div>
+            <div class="carousel-dots">
+              <div class="carousel-dot active" data-slide="0"></div>
+              <div class="carousel-dot" data-slide="1"></div>
+            </div>
+          </div>
+          <div class="gallery-label">
+            <span class="gl-name">My Bachelor Rooms</span>
+            <span class="gl-tag">Flutter · Riverpod · Supabase</span>
+          </div>
+        </div>
+
+        <!-- KACT Charity App -->
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="400">
+          <div class="phone-frame empty">
+            <div class="carousel-viewport">
+              <div class="phone-screen">
+                <img src="" alt="KACT - Dashboard" loading="lazy"/>
+              </div>
+              <div class="phone-screen">
+                <img src="" alt="KACT - Donations" loading="lazy"/>
+              </div>
+            </div>
+            <div class="carousel-dots">
+              <div class="carousel-dot active" data-slide="0"></div>
+              <div class="carousel-dot" data-slide="1"></div>
+            </div>
+          </div>
+          <div class="gallery-label">
+            <span class="gl-name">KACT Charity App</span>
+            <span class="gl-tag">Flutter · Firebase · fl_chart</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div id="galleryLightbox" class="gallery-lightbox">
+    <button class="glb-close" id="glbClose" aria-label="Close">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div class="glb-carousel">
+      <button class="glb-nav glb-prev" id="glbPrev" aria-label="Previous image">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <div class="glb-img-wrap">
+        <img id="glbImg" src="" alt=""/>
+      </div>
+      <button class="glb-nav glb-next" id="glbNext" aria-label="Next image">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
+    <div class="glb-controls">
+      <div class="glb-caption" id="glbCaption"></div>
+      <div class="glb-counter" id="glbCounter">1 / 1</div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════
+       PROJECTS
+  ════════════════════════════════════ -->
+  <section class="section projects-section" id="projects">
+    <div class="container">
+      <div class="sec-label" data-aos="fade-up">// 03 — Projects</div>
+      <h2 class="sec-title" data-aos="fade-up" data-aos-delay="50">
+        What I've <em>Built</em>
+      </h2>
+
+      <!-- Filter -->
+      <div class="proj-filters" data-aos="fade-up" data-aos-delay="100">
+        <button class="pf-btn active" data-f="all">All</button>
+        <button class="pf-btn" data-f="Live">🟢 Live</button>
+        <button class="pf-btn" data-f="Completed">✅ Completed</button>
+        <button class="pf-btn" data-f="In Progress">🔄 In Progress</button>
+      </div>
+
+      <!-- Loading state -->
+      <div class="proj-loading" id="projLoading">
+        <div class="ld-spinner"></div>
+        <span>Loading projects…</span>
+      </div>
+
+      <!-- Projects grid -->
+      <div class="projects-grid" id="projectsGrid"></div>
+
+      <!-- Admin panel -->
+      <div class="admin-section">
+        <button class="btn-ghost btn-sm" id="adminToggle">
+          <i class="fa-solid fa-lock"></i> Manage Projects
+        </button>
+
+        <div class="admin-panel glass-card" id="adminPanel" style="display:none">
+          <div class="ap-header">
+            <h3 id="apTitle"><i class="fa-solid fa-circle-plus"></i> Add New Project</h3>
+            <button class="btn-ghost btn-sm" id="apCancel">✕ Cancel</button>
+          </div>
+
+          <form id="apForm" novalidate>
+            <input type="hidden" id="apId"/>
+            <div class="ap-grid">
+              <div class="ap-field span-1">
+                <label>Project Title *</label>
+                <input type="text" id="apTitle2" placeholder="HR Management App"/>
+              </div>
+              <div class="ap-field span-1">
+                <label>Category</label>
+                <select id="apCat">
+                  <option>Mobile App</option><option>Web App</option>
+                  <option>IT System</option><option>Backend</option><option>Other</option>
+                </select>
+              </div>
+              <div class="ap-field span-2">
+                <label>Description *</label>
+                <textarea id="apDesc" rows="3" placeholder="What does this app do and what problem does it solve?"></textarea>
+              </div>
+              <div class="ap-field span-1">
+                <label>Tech Stack (comma separated)</label>
+                <input type="text" id="apTech" placeholder="Flutter, GetX, Firebase, MySQL"/>
+              </div>
+              <div class="ap-field span-1">
+                <label>Status</label>
+                <select id="apStatus">
+                  <option>Live</option><option>In Progress</option>
+                  <option>Completed</option><option>Private</option>
+                </select>
+              </div>
+              <div class="ap-field span-2">
+                <label>Features (one per line)</label>
+                <textarea id="apFeatures" rows="5" placeholder="Employee Login&#10;Role-Based Access&#10;Leave Management&#10;Push Notifications"></textarea>
+              </div>
+              <div class="ap-field span-2">
+                <label>GitHub / App URL (optional)</label>
+                <input type="url" id="apUrl" placeholder="https://github.com/basithcreation/..."/>
+              </div>
+              <div class="ap-field span-2">
+                <label>App Screenshot URL (optional) <span class="ap-tip" title="Free image hosting: go to cloudinary.com → Upload your screenshot → Copy the URL and paste here">💡 How to add images?</span></label>
+                <input type="url" id="apImgUrl" placeholder="https://res.cloudinary.com/your-cloud/image/upload/..."/>
+                <small class="ap-img-hint">Upload to <strong>cloudinary.com</strong> (free) → copy the image URL → paste here</small>
+              </div>
+            </div>
+            <div class="ap-actions">
+              <button type="submit" class="btn-primary" id="apSubmit">
+                <i class="fa-solid fa-plus"></i> <span id="apSubmitTxt">Add Project</span>
+              </button>
+            </div>
+            <div class="ap-msg" id="apMsg"></div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       EXPERIENCE / TIMELINE
+  ════════════════════════════════════ -->
+  <section class="section exp-section" id="experience">
+    <div class="container">
+      <div class="sec-label" data-aos="fade-up">// 05 — Experience</div>
+      <h2 class="sec-title" data-aos="fade-up" data-aos-delay="50">
+        Where I've <em>Worked</em>
+      </h2>
+
+      <div class="timeline">
+
+        <div class="tl-item" data-aos="fade-up">
+          <div class="tl-dot"><i class="fa-solid fa-code"></i></div>
+          <div class="tl-content glass-card">
+            <div class="tlc-top">
+              <div>
+                <div class="tlc-period">Jun 2023 — Present</div>
+                <h3 class="tlc-role">Flutter Developer</h3>
+                <div class="tlc-co"><i class="fa-solid fa-building"></i> KPOST Couriers Co. — Kuwait</div>
+              </div>
+              <span class="tl-status-live">Current</span>
+            </div>
+            <ul class="tlc-points">
+              <li>Architected &amp; shipped 6+ production Flutter apps (Android, iOS, Web) used in daily operations</li>
+              <li>Led GetX → Riverpod + go_router migration across 166-file codebase with zero regressions</li>
+              <li>Built GPS attendance verification with Google Maps geofencing and PDF report export</li>
+              <li>Integrated Bluetooth ESC/POS thermal printer, barcode scanning, and OTA update delivery</li>
+              <li>Implemented AES-256 encryption + biometric vault and role-based permission gating</li>
+              <li>Designed 23-component reusable widget library; reduced feature delivery time significantly</li>
+            </ul>
+            <div class="tlc-tags">
+              <span>Flutter</span><span>Dart</span><span>Riverpod</span><span>BLoC</span>
+              <span>REST API</span><span>Firebase</span><span>MySQL</span><span>GPS</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item" data-aos="fade-up" data-aos-delay="150">
+          <div class="tl-dot"><i class="fa-solid fa-server"></i></div>
+          <div class="tl-content glass-card">
+            <div class="tlc-top">
+              <div>
+                <div class="tlc-period">Concurrent Role</div>
+                <h3 class="tlc-role">IT Administrator</h3>
+                <div class="tlc-co"><i class="fa-solid fa-building"></i> KPOST Couriers Co. — Kuwait</div>
+              </div>
+              <span class="tl-status-live">Current</span>
+            </div>
+            <ul class="tlc-points">
+              <li>Managing enterprise IT infrastructure including servers and network equipment</li>
+              <li>PBX system administration — Grandstream UCM6300A configuration &amp; maintenance</li>
+              <li>Mobile device management (MDM) for 70+ company devices across departments</li>
+              <li>Network troubleshooting: LAN/WAN, Wi-Fi, VPN setup &amp; maintenance</li>
+              <li>Corporate helpdesk, IT asset tracking, and employee technical support</li>
+            </ul>
+            <div class="tlc-tags">
+              <span>Windows Admin</span><span>Grandstream PBX</span><span>MDM</span>
+              <span>Networking</span><span>VPN</span><span>Helpdesk</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item" data-aos="fade-up" data-aos-delay="300">
+          <div class="tl-dot"><i class="fa-solid fa-headset"></i></div>
+          <div class="tl-content glass-card">
+            <div class="tlc-top">
+              <div>
+                <div class="tlc-period">2021 — 2023</div>
+                <h3 class="tlc-role">Application Support Engineer</h3>
+                <div class="tlc-co"><i class="fa-solid fa-building"></i> Syrma SGS Technology — Chennai, India</div>
+              </div>
+              <span class="tl-status-past">Past</span>
+            </div>
+            <ul class="tlc-points">
+              <li>Provided L1/L2 application support for enterprise manufacturing software systems</li>
+              <li>Managed software deployments, system configurations, and user access provisioning</li>
+              <li>Diagnosed and resolved technical issues across hardware, OS, and application layers</li>
+              <li>Maintained IT documentation, asset records, and support ticket workflows</li>
+            </ul>
+            <div class="tlc-tags">
+              <span>IT Support</span><span>Windows Server</span><span>Active Directory</span>
+              <span>Software Deployment</span><span>Helpdesk</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Education -->
+      <div class="edu-block glass-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="edu-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <div>
+          <div class="edu-period">2017 — 2020</div>
+          <div class="edu-degree">Bachelor of Science in Information Technology</div>
+          <div class="edu-school">Jamal Mohamed College, Tamil Nadu, India</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       CTA STRIP
+  ════════════════════════════════════ -->
+  <section class="cta-strip-section">
+    <div class="container">
+      <div class="cta-strip-card glass-card" data-aos="fade-up">
+        <div class="ctas-glow"></div>
+        <div class="ctas-content">
+          <h2 class="ctas-title">Ready to bring your ideas to life?</h2>
+          <p class="ctas-sub">Let's collaborate and create something extraordinary together.</p>
+        </div>
+        <a href="#contact" class="btn-primary btn-lg">
+          Start a Conversation <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       CONTACT
+  ════════════════════════════════════ -->
+  <section class="section contact-section" id="contact">
+    <div class="container">
+      <div class="sec-label" data-aos="fade-up">// 06 — Contact</div>
+      <h2 class="sec-title" data-aos="fade-up" data-aos-delay="50">
+        Let's <em>Connect</em>
+      </h2>
+
+      <div class="contact-grid">
+        <div class="contact-left" data-aos="fade-right">
+          <p class="ct-lead">
+            Have a Flutter project idea? Need an IT consultant? Looking to collaborate? I'm open to freelance work, full-time roles, and long-term partnerships.
+          </p>
+
+          <div class="ct-links">
+            <a href="mailto:abbasith222@gmail.com" class="ct-link glass-card">
+              <div class="ctl-icon email-icon"><i class="fa-solid fa-envelope"></i></div>
+              <div class="ctl-text">
+                <span class="ctl-label">Email</span>
+                <span class="ctl-val">abbasith222@gmail.com</span>
+              </div>
+              <i class="fa-solid fa-arrow-up-right ctl-arrow"></i>
+            </a>
+            <a href="https://wa.me/96566099743" target="_blank" class="ct-link glass-card">
+              <div class="ctl-icon wa-icon"><i class="fa-brands fa-whatsapp"></i></div>
+              <div class="ctl-text">
+                <span class="ctl-label">WhatsApp</span>
+                <span class="ctl-val">+965 660 99743</span>
+              </div>
+              <i class="fa-solid fa-arrow-up-right ctl-arrow"></i>
+            </a>
+            <a href="https://linkedin.com/in/abdul-basith200" target="_blank" class="ct-link glass-card">
+              <div class="ctl-icon li-icon"><i class="fa-brands fa-linkedin"></i></div>
+              <div class="ctl-text">
+                <span class="ctl-label">LinkedIn</span>
+                <span class="ctl-val">abdul-basith200</span>
+              </div>
+              <i class="fa-solid fa-arrow-up-right ctl-arrow"></i>
+            </a>
+            <a href="https://instagram.com/basith_dev" target="_blank" class="ct-link glass-card">
+              <div class="ctl-icon ig-icon"><i class="fa-brands fa-instagram"></i></div>
+              <div class="ctl-text">
+                <span class="ctl-label">Instagram</span>
+                <span class="ctl-val">@basith_dev</span>
+              </div>
+              <i class="fa-solid fa-arrow-up-right ctl-arrow"></i>
+            </a>
+            <a href="https://github.com/basithcreation" target="_blank" class="ct-link glass-card">
+              <div class="ctl-icon gh-icon"><i class="fa-brands fa-github"></i></div>
+              <div class="ctl-text">
+                <span class="ctl-label">GitHub</span>
+                <span class="ctl-val">basithcreation</span>
+              </div>
+              <i class="fa-solid fa-arrow-up-right ctl-arrow"></i>
+            </a>
+            <div class="ct-link glass-card ct-link--static">
+              <div class="ctl-icon loc-icon"><i class="fa-solid fa-location-dot"></i></div>
+              <div class="ctl-text">
+                <span class="ctl-label">Location</span>
+                <span class="ctl-val">Hawalli, Kuwait</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-right" data-aos="fade-left">
+          <div class="contact-form-card glass-card">
+            <h3 class="cf-title"><i class="fa-solid fa-paper-plane"></i> Send a Message</h3>
+
+            <!-- Honeypot (hidden, bots fill this) -->
+            <input type="text" name="_honey" id="cfHoney" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;"/>
+
+            <form id="contactForm" novalidate>
+              <div class="cf-field">
+                <label for="cfName">Your Name *</label>
+                <input type="text" id="cfName" name="from_name" placeholder="John Smith" maxlength="100" required/>
+              </div>
+              <div class="cf-field">
+                <label for="cfEmail">Email Address *</label>
+                <input type="email" id="cfEmail" name="reply_to" placeholder="john@example.com" maxlength="200" required/>
+              </div>
+              <div class="cf-field">
+                <label for="cfSubject">Subject</label>
+                <input type="text" id="cfSubject" name="subject" placeholder="Flutter project inquiry" maxlength="150"/>
+              </div>
+              <div class="cf-field">
+                <label for="cfMsg">Message *</label>
+                <textarea id="cfMsg" name="message" rows="4" placeholder="Tell me about your project..." maxlength="2000" required></textarea>
+              </div>
+              <div class="cf-status" id="cfStatus"></div>
+              <button type="submit" class="btn-primary btn-full" id="cfSubmit">
+                <span id="cfSubmitTxt"><i class="fa-solid fa-paper-plane"></i> Send Message</span>
+              </button>
+              <p class="cf-note">No spam. Replies within 4–8 hours.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- ─── FOOTER ─────────────────────── -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="#hero" class="footer-logo">AB<span class="accent-dot">.</span></a>
+        <p class="footer-tagline">Building digital experiences</p>
+      </div>
+      <p class="footer-copy">© 2026 Abdul Basith · Flutter Developer · Kuwait</p>
+      <div class="footer-socials">
+        <a href="mailto:abbasith222@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+        <a href="https://wa.me/96566099743" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://instagram.com/basith_dev" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://linkedin.com/in/abdul-basith200" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://github.com/basithcreation" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button class="back-top" id="backTop" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <script src="js/db.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

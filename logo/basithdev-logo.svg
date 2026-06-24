@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c8f542"/>
+      <stop offset="100%" stop-color="#60efff"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c8f542" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#60efff" stop-opacity="0.03"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softglow">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="400" rx="72" fill="#060608"/>
+  <rect width="400" height="400" rx="72" fill="url(#g2)"/>
+
+  <!-- Outer border -->
+  <rect x="1" y="1" width="398" height="398" rx="71" fill="none" stroke="url(#g1)" stroke-width="1.5" stroke-opacity="0.35"/>
+
+  <!-- Corner accent — top left -->
+  <path d="M36 72 L36 36 L72 36" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.7"/>
+  <!-- Corner accent — bottom right -->
+  <path d="M364 328 L364 364 L328 364" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.7"/>
+
+  <!-- Code brackets -->
+  <path d="M96 200 L136 156" stroke="url(#g1)" stroke-width="5" stroke-linecap="round" fill="none" filter="url(#glow)"/>
+  <path d="M96 200 L136 244" stroke="url(#g1)" stroke-width="5" stroke-linecap="round" fill="none" filter="url(#glow)"/>
+  <path d="M304 200 L264 156" stroke="url(#g1)" stroke-width="5" stroke-linecap="round" fill="none" filter="url(#glow)"/>
+  <path d="M304 200 L264 244" stroke="url(#g1)" stroke-width="5" stroke-linecap="round" fill="none" filter="url(#glow)"/>
+
+  <!-- B lettermark -->
+  <text x="200" y="236"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-weight="700" font-size="120"
+    text-anchor="middle"
+    fill="url(#g1)" filter="url(#softglow)">B</text>
+
+  <!-- Dot accent -->
+  <circle cx="262" cy="232" r="10" fill="#c8f542"/>
+  <circle cx="262" cy="232" r="18" fill="rgba(200,245,66,0.12)"/>
+
+  <!-- Wordmark -->
+  <line x1="120" y1="296" x2="280" y2="296" stroke="rgba(200,245,66,0.2)" stroke-width="1"/>
+  <text x="200" y="322"
+    font-family="'Courier New', Courier, monospace"
+    font-size="20" letter-spacing="7"
+    text-anchor="middle" fill="#6b7585">basithdev</text>
+</svg>
