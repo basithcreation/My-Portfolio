@@ -259,7 +259,11 @@ const apSubmit    = document.getElementById('apSubmit');
 const apSubmitTxt = document.getElementById('apSubmitTxt');
 const apTitle     = document.getElementById('apTitle');
 
+// Admin tools are a local publishing aid only — hidden on the live site.
+if (!DB.isLocal()) adminToggle.style.display = 'none';
+
 adminToggle.addEventListener('click', () => {
+  if (!DB.isLocal()) return;
   if (!isAdmin) {
     const pw = prompt('Enter admin password:');
     if (!DB.auth(pw)) { alert('Incorrect password'); return; }
@@ -290,7 +294,6 @@ function resetForm() {
   apTitle.innerHTML = '<i class="fa-solid fa-circle-plus"></i> Add New Project';
   apSubmitTxt.textContent = 'Add Project';
   apSubmit.querySelector('i').className = 'fa-solid fa-plus';
-  setMsg('', '');
 }
 
 function openEdit(id) {
@@ -368,10 +371,10 @@ async function persist(msg) {
   apSubmit.disabled = false;
   apSubmitTxt.textContent = editId ? 'Update Project' : 'Add Project';
 
-  if (result.reason === 'not-configured') {
-    setMsg('⚠ DB not configured — changes are local only. Set up JSONBin in js/db.js to persist.', 'err');
+  if (!result.ok) {
+    setMsg('⚠ Could not generate the file: ' + (result.reason || 'unknown error'), 'err');
   } else {
-    setMsg(msg, 'ok');
+    setMsg(msg + ' — projects-data.js downloaded. Replace js/projects-data.js with it, then commit & push to publish.', 'ok');
   }
   renderProjects(projects);
 }
