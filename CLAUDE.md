@@ -84,9 +84,24 @@ All visual values live in `css/main.css` `:root`. Key tokens:
 | Typewriter roles                   | `js/app.js` — `roles` array in `initTypewriter` IIFE                            |
 | Projects data                      | `js/projects-data.js` — `PROJECTS_DATA` array                                   |
 
+## Deployment (GitHub Pages)
+
+- **Live URL:** https://basithcreation.github.io/basith-portfolio/
+- **Repo:** `basithcreation/basith-portfolio` (public — never commit secrets; git history is world-readable)
+- **Hosting:** GitHub Pages, "Deploy from a branch" → `main` / `(root)`. Every push to `main` redeploys automatically in ~1 minute; there is no build step.
+- Deployed and verified live on 2026-07-05: projects render, admin button hidden, no console errors, OG image + resume PDF resolve.
+
 ## Projects Data & Publish Workflow (no cloud DB)
 
-There is deliberately **no backend and no API keys** — an earlier JSONBin.io integration was removed for security before publishing. Projects live in `js/projects-data.js`. To change them: edit the array directly, **or** run the site locally → "Manage Projects" → edit in the form → an updated `projects-data.js` downloads → replace the file. Either way, `git commit` + `git push` publishes (GitHub Pages redeploys from `main`). Do not reintroduce credentials of any kind into client-side code.
+There is deliberately **no backend and no API keys** — an earlier JSONBin.io integration was removed for security before publishing (its master key, still visible in old git history, was invalidated). Do not reintroduce credentials of any kind into client-side code.
+
+Projects live in `js/projects-data.js`. To add/edit/delete a project:
+
+1. Run the site locally (`python -m http.server` in the repo root, or open `index.html` directly).
+2. Projects section → **"Manage Projects"** → enter `ADMIN_PW` → add/edit/delete in the form.
+3. On save, an updated `projects-data.js` downloads automatically → replace `js/projects-data.js` with it.
+   (Alternative: skip the panel and edit the `PROJECTS_DATA` array by hand — same fields.)
+4. Publish: `git add js/projects-data.js && git commit -m "Update projects" && git push` — GitHub Pages redeploys.
 
 ## Responsive Breakpoints
 
