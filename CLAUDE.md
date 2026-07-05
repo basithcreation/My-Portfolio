@@ -6,18 +6,21 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A single-page portfolio website — pure HTML/CSS/vanilla JS, no build tools, no package manager, no framework. Open `index.html` directly in a browser; there is nothing to install or compile.
 
+External resources (Google Fonts, Font Awesome, Devicons, EmailJS SDK) load from CDNs, so full styling requires an internet connection — offline, the page renders with fallback fonts and no icons. Project data is fully local (static JS file); **the published site contains zero API keys or credentials.**
+
 ## Architecture
 
-**Four files, clear separation of concerns:**
+**Five files, clear separation of concerns:**
 
-| File           | Role                                                                                                                                                                                                                             |
-| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `index.html`   | All HTML sections in one page (loader → nav → hero → about → skills → gallery → projects → experience → contact → footer)                                                                                                        |
-| `css/main.css` | Design tokens (`:root`), all component styles, responsive breakpoints, and animation keyframes in one file                                                                                                                       |
-| `js/db.js`     | Cloud data layer (JSONBin.io). Exports a single `DB` object with `get()`, `save()`, `auth()`, `newId()`. Falls back to hardcoded `DEFAULTS` array when not configured.                                                           |
-| `js/app.js`    | All runtime JS: loader, custom cursor, nav scroll, AOS observer, stat counters, project rendering/filtering, admin panel, gallery lightbox, particle canvas, 3D card tilt, button ripple, typewriter, char reveal, magnetic nav. |
+| File                  | Role                                                                                                                                                                                                                             |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `index.html`          | All HTML sections in one page (loader → nav → hero → about → skills → gallery → projects → experience → contact → footer)                                                                                                        |
+| `css/main.css`        | Design tokens (`:root`), all component styles, responsive breakpoints, and animation keyframes in one file                                                                                                                       |
+| `js/projects-data.js` | **The database.** A static `const PROJECTS_DATA = [...]` array — single source of truth for projects. Edited locally, committed, pushed to publish.                                                                              |
+| `js/db.js`            | Data layer over the static file. Exports a single `DB` object: `get()` (reads `PROJECTS_DATA`), `save()` (downloads a regenerated `projects-data.js`), `auth()`, `newId()`, `isLocal()`. **No network calls, no API keys.**      |
+| `js/app.js`           | All runtime JS: loader, custom cursor, nav scroll, AOS observer, stat counters, project rendering/filtering, admin panel, gallery lightbox, particle canvas, 3D card tilt, button ripple, typewriter, char reveal, magnetic nav. |
 
-**Script load order matters:** `db.js` must load before `app.js` (currently guaranteed by DOM order at bottom of `<body>`).
+**Script load order matters:** `projects-data.js` → `db.js` → `app.js` (guaranteed by DOM order at bottom of `<body>`). Note `PROJECTS_DATA` is a top-level `const` — it is a global *binding*, not a `window` property, so `db.js` reads it via a `typeof` guard, never `window.PROJECTS_DATA`.
 
 `hero1.txt` is a CSS scratch/draft file — it is not referenced by any HTML or build step and can be ignored.
 
@@ -26,9 +29,9 @@ A single-page portfolio website — pure HTML/CSS/vanilla JS, no build tools, no
 All visual values live in `css/main.css` `:root`. Key tokens:
 
 ```css
---bg / --bg2 / --bg3   /* layered dark backgrounds (#050810 base) */
---a1 / --a2 / --a3     /* indigo (#6366f1) / cyan (#22d3ee) accents */
---grad                 /* primary gradient: indigo → cyan */
+--bg / --bg2 / --bg3   /* layered dark backgrounds (#060608 base) */
+--a1 / --a2 / --a3     /* lime (#c8f542) / cyan (#60efff) accents */
+--grad                 /* primary gradient: lime → cyan */
 --grad-text            /* gradient text (stat numbers, highlights) */
 --t1 / --t2 / --t3     /* text hierarchy: bright → muted → subtle */
 --ff-display           /* Plus Jakarta Sans (700–800) — headings, logo, stats */
@@ -43,7 +46,7 @@ All visual values live in `css/main.css` `:root`. Key tokens:
 
 **AOS (custom, not a library):** Elements with `[data-aos]` start at `opacity:0; transform:translateY(24px)`. `triggerAOS()` in `app.js` creates an `IntersectionObserver` that adds class `aos-in` when visible. Variants `fade-left` / `fade-right` use `translateX`. Delay via `data-aos-delay` attribute (ms).
 
-**Project data flow:** `DB.get()` → `projects[]` array → `renderProjects()` builds DOM cards → filter buttons call `renderProjects()` with a status filter. Admin edits mutate `projects[]` then call `DB.save()`.
+**Project data flow:** `PROJECTS_DATA` (static file) → `DB.get()` → `projects[]` array → `renderProjects()` builds DOM cards → filter buttons call `renderProjects()` with a status filter. Admin edits mutate `projects[]` then call `DB.save()`, which downloads a regenerated `projects-data.js` — the user replaces the file and pushes to publish.
 
 **Project schema** (fields used in `renderProjects` and the admin form):
 
@@ -56,7 +59,7 @@ All visual values live in `css/main.css` `:root`. Key tokens:
   createdAt, updatedAt }
 ```
 
-**Admin panel:** Password hardcoded in `db.js` as `ADMIN_PW` (default: `basith@2025`). When `isAdmin = true`, `renderProjects()` appends Edit/Delete buttons to each card. The admin panel form is always in the DOM but `display:none`. Activated by clicking "Manage Projects" → entering password via `prompt()`.
+**Admin panel (local-only):** The "Manage Projects" button is hidden unless `DB.isLocal()` is true (`file:` protocol or `localhost`/`127.0.0.1`) — it never appears on the live site. Password hardcoded in `db.js` as `ADMIN_PW` (default: `basith@2025`); it only gates the local editing UI, it is not a security boundary. When `isAdmin = true`, `renderProjects()` appends Edit/Delete buttons to each card. The admin panel form is always in the DOM but `display:none`. Activated by clicking "Manage Projects" → entering password via `prompt()`.
 
 **Card 3D tilt:** Applied in JS to `.proj-card, .skill-cat-card, .ct-cta-card, .tl-content` using `perspective(700px) rotateX() rotateY()` via inline `style.transform`. Uses RAF-based lerp for smooth spring-back. Do not apply CSS `transform` to these elements on hover — inline style takes precedence.
 
@@ -79,12 +82,11 @@ All visual values live in `css/main.css` `:root`. Key tokens:
 | Fonts                              | `index.html` Google Fonts `<link>` + `css/main.css` `--ff-display`, `--ff-body` |
 | Admin password                     | `js/db.js` — `const ADMIN_PW`                                                   |
 | Typewriter roles                   | `js/app.js` — `roles` array in `initTypewriter` IIFE                            |
-| Default projects (no DB)           | `js/db.js` — `DEFAULTS` array                                                   |
-| Cloud DB                           | `js/db.js` — `BIN_ID` and `API_KEY` (JSONBin.io)                                |
+| Projects data                      | `js/projects-data.js` — `PROJECTS_DATA` array                                   |
 
-## JSONBin.io Setup
+## Projects Data & Publish Workflow (no cloud DB)
 
-When `BIN_ID` contains `'YOUR_BIN_ID_HERE'`, `CONFIGURED` is false and `DB.get()` returns `DEFAULTS`. To enable persistence: sign up at jsonbin.io, create a bin with `{ "projects": [] }`, and replace `BIN_ID` / `API_KEY` in `db.js`. The admin panel will then save to the cloud.
+There is deliberately **no backend and no API keys** — an earlier JSONBin.io integration was removed for security before publishing. Projects live in `js/projects-data.js`. To change them: edit the array directly, **or** run the site locally → "Manage Projects" → edit in the form → an updated `projects-data.js` downloads → replace the file. Either way, `git commit` + `git push` publishes (GitHub Pages redeploys from `main`). Do not reintroduce credentials of any kind into client-side code.
 
 ## Responsive Breakpoints
 
@@ -111,11 +113,11 @@ A `.btn-cv` appears in the desktop nav and `.btn-download-cv` in hero btns, both
 
 ## Project Images (Cloudinary)
 
-The admin panel image field now includes a guide: upload screenshots to **cloudinary.com** (free tier), copy the image URL, paste into the "App Screenshot URL" field. The admin panel stores the URL in JSONBin.io as `imageUrl` on the project object.
+The admin panel image field includes a guide: upload screenshots to **cloudinary.com** (free tier), copy the image URL, paste into the "App Screenshot URL" field. The URL is stored as `imageUrl` on the project object in `js/projects-data.js`.
 
 ## SEO / Meta
 
-OG tags and Twitter Card meta added to `<head>`. Update `og:url` and `og:image` in `index.html` when deployed to a real domain.
+OG tags, Twitter Card meta, and a canonical link are set in `<head>`, all pointing to the live URL `https://basithcreation.github.io/basith-portfolio/`. The social card is `og-image.png` (1200×630) in the repo root. If the site moves to a custom domain, update `og:url`, `og:image`, `twitter:image`, and the canonical link. `screenshots/` holds the README images.
 
 ## Available Skills
 
