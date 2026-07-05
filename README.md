@@ -199,7 +199,7 @@ DESIGN REQUIREMENTS:
 - Dark theme only: bg #060608, accent lime #c8f542 + cyan #60efff
 - Fonts: Plus Jakarta Sans (display, 900 weight) + JetBrains Mono (mono)
 - Fully responsive: mobile-first, works on 320px to 2560px screens
-- All Devicons tech logos (Flutter, Dart, Firebase, PHP, MySQL, Git, etc)
+- All Devicons tech logos (Flutter, Dart, Firebase, Node.js, MySQL, Git, etc)
 - Font Awesome 6 icons throughout
 
 SECTIONS (in order):
