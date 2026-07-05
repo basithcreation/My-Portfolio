@@ -116,7 +116,7 @@ basith-portfolio/
 # 1. Push this repo to GitHub (public)
 # 2. Go to: Settings → Pages → Source: Deploy from branch (main / root)
 # The site is live at:
-https://basithcreation.github.io/basith-portfolio/
+https://basithcreation.github.io/My-Portfolio/
 ```
 
 ---

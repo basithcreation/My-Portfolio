@@ -86,8 +86,8 @@ All visual values live in `css/main.css` `:root`. Key tokens:
 
 ## Deployment (GitHub Pages)
 
-- **Live URL:** https://basithcreation.github.io/basith-portfolio/
-- **Repo:** `basithcreation/basith-portfolio` (public — never commit secrets; git history is world-readable)
+- **Live URL:** https://basithcreation.github.io/My-Portfolio/
+- **Repo:** `basithcreation/My-Portfolio` (public — never commit secrets; git history is world-readable)
 - **Hosting:** GitHub Pages, "Deploy from a branch" → `main` / `(root)`. Every push to `main` redeploys automatically in ~1 minute; there is no build step.
 - Deployed and verified live on 2026-07-05: projects render, admin button hidden, no console errors, OG image + resume PDF resolve.
 
@@ -132,7 +132,7 @@ The admin panel image field includes a guide: upload screenshots to **cloudinary
 
 ## SEO / Meta
 
-OG tags, Twitter Card meta, and a canonical link are set in `<head>`, all pointing to the live URL `https://basithcreation.github.io/basith-portfolio/`. The social card is `og-image.png` (1200×630) in the repo root. If the site moves to a custom domain, update `og:url`, `og:image`, `twitter:image`, and the canonical link. `screenshots/` holds the README images.
+OG tags, Twitter Card meta, and a canonical link are set in `<head>`, all pointing to the live URL `https://basithcreation.github.io/My-Portfolio/`. The social card is `og-image.png` (1200×630) in the repo root. If the site moves to a custom domain, update `og:url`, `og:image`, `twitter:image`, and the canonical link. `screenshots/` holds the README images.
 
 ## Available Skills
 
