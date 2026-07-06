@@ -76,6 +76,7 @@ All visual values live in `css/main.css` `:root`. Key tokens:
 | What                               | Where                                                                           |
 | ---------------------------------- | ------------------------------------------------------------------------------- |
 | Personal info (name, email, phone) | `index.html` — search and replace text                                          |
+| Hero stats (years exp, apps, …)    | `index.html` — `data-target` attributes on `.stat-num` in `.hero-stats`         |
 | WhatsApp number                    | `index.html` — `96566099743`                                                    |
 | Instagram handle                   | `index.html` — `basith_dev`                                                     |
 | Accent colors                      | `css/main.css` `:root` → `--a1`, `--a2`, `--a3`                                 |
