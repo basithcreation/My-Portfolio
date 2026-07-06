@@ -96,6 +96,7 @@ input,textarea,select{font-family:inherit;outline:none;color:var(--t1)}
   font-family:var(--ff-display);
   font-size:3rem;font-weight:900;letter-spacing:-.04em;color:var(--t1);
 }
+.loader-logo img{height:96px;width:auto;display:block;margin:0 auto}
 .loader-logo span{
   background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
@@ -272,6 +273,7 @@ input,textarea,select{font-family:inherit;outline:none;color:var(--t1)}
   transition:opacity .2s;
   display:inline-block;
 }
+.nav-logo img{height:44px;width:auto;display:block}
 .nav-logo:hover{opacity:.7}
 .accent-dot{
   background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
@@ -619,10 +621,11 @@ input,textarea,select{font-family:inherit;outline:none;color:var(--t1)}
 .ac-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.4rem}
 .ac-ava{
   width:58px;height:58px;border-radius:50%;
-  background:var(--grad);
+  background:rgba(255,255,255,.05);
   display:flex;align-items:center;justify-content:center;
   font-family:var(--ff-display);font-weight:900;font-size:1.1rem;color:#fff;
 }
+.ac-ava img{width:82%;height:82%;object-fit:contain}
 .ac-avail{
   display:flex;align-items:center;gap:.45rem;
   background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.2);
@@ -1090,6 +1093,7 @@ input,textarea,select{font-family:inherit;outline:none;color:var(--t1)}
 .footer-logo{
   font-family:var(--ff-display);font-weight:800;font-size:1.1rem;letter-spacing:-.04em;
 }
+.footer-logo img{height:38px;width:auto;display:block}
 .footer-copy{font-size:.78rem;color:var(--t3);font-weight:400;letter-spacing:.01em}
 .footer-socials{display:flex;gap:1rem}
 .footer-socials a{

@@ -140,7 +140,13 @@ A `frontend-design` skill is installed at `.agents/skills/frontend-design/`. Use
 
 ## Logo / Brand Assets
 
-SVG brand files live in `logo/`: `basithdev-logo.svg`, `basithdev-avatar.svg`, `basithdev-wordmark.svg`. The favicon in `index.html` references the avatar SVG inline as a data URI — to update the favicon, replace that data URI.
+The site brand mark is the colorful "B" emblem from `logo.png` (source file, repo root — dark-purple background, not used directly). Processed cutouts live in `logo/`:
+
+- `logo/logo-mark.png` — square B emblem, transparent background. Used in the nav, loader, footer, about-card avatar, and as the favicon/apple-touch-icon.
+- `logo/logo-full.png` — full "Basith Creation" lockup (emblem + wordmark), transparent background. Currently unused; available for larger placements.
+- `basithdev-*.svg` — older SVG brand files, superseded by the PNG mark but kept in the repo.
+
+Image sizes are set in `css/main.css` (`.nav-logo img`, `.loader-logo img`, `.footer-logo img`, `.ac-ava img`). To regenerate the cutouts from a new `logo.png`, chroma-key the background color and trim (the originals were produced via canvas processing in Chrome).
 
 ## Generated Files
 
